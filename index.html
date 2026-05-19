@@ -80,29 +80,99 @@
             color: var(--brand-primary); 
         }
 
-        .partition-title {
-            font-family: 'Dancing Script', cursive;
+        .luxury-grid {
+            display: grid;
+            grid-template-columns: repeat(1, minmax(0, 1fr));
+            gap: 24px;
+        }
+        @media (min-width: 640px) {
+            .luxury-grid {
+                grid-template-columns: repeat(6, minmax(0, 1fr));
+            }
+            .luxury-grid > div:nth-child(5n+1) { grid-column: span 4; height: 450px; }
+            .luxury-grid > div:nth-child(5n+2) { grid-column: span 2; height: 450px; }
+            .luxury-grid > div:nth-child(5n+3) { grid-column: span 2; height: 400px; }
+            .luxury-grid > div:nth-child(5n+4) { grid-column: span 2; height: 400px; }
+            .luxury-grid > div:nth-child(5n+5) { grid-column: span 2; height: 400px; }
+        }
+
+        .collection-card {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(131, 77, 88, 0.04);
+            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            height: 380px;
+        }
+        .collection-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(131, 77, 88, 0.12);
+        }
+        .collection-card img {
+            width: 100%;
+            height: 100%;
+            object-cover: cover;
+            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .collection-card:hover img {
+            transform: scale(1.06);
+        }
+
+        .glass-overlay {
+            position: absolute;
+            bottom: 20px;
+            left: 20px;
+            right: 20px;
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.4);
+            border-radius: 18px;
+            padding: 16px 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+        .collection-card:hover .glass-overlay {
+            background: rgba(131, 77, 88, 0.95);
+            border-color: rgba(131, 77, 88, 0.1);
+        }
+        .collection-title {
+            font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-weight: 700;
-            display: inline-block;
-            transform: skewX(-10deg); 
-            padding-left: 5px;
+            font-size: 1.65rem;
+            color: var(--brand-primary);
+            transition: color 0.3s ease;
+        }
+        .collection-card:hover .collection-title {
+            color: #ffffff;
+        }
+        .arrow-icon {
+            color: var(--brand-primary);
+            font-size: 1.25rem;
+            transition: all 0.3s ease;
+        }
+        .collection-card:hover .arrow-icon {
+            color: #ffffff;
+            transform: translateX(4px);
         }
 
         .new-badge {
             position: absolute;
-            top: 12px;
-            right: 12px;
+            top: 20px;
+            left: 20px;
             background: #c48b9f;
             color: white;
-            padding: 4px 12px;
+            padding: 6px 16px;
             border-radius: 50px;
-            font-size: 9px;
+            font-size: 10px;
             font-weight: bold;
             z-index: 20;
+            letter-spacing: 1px;
             animation: pulse 2s infinite;
         }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
     </style>
 </head>
 <body>
@@ -127,10 +197,10 @@
     </div>
 
     <div id="main-ui">
-        <main class="container mx-auto px-4 py-12">
-            <h1 class="text-center text-6xl font-bold text-[#834d58] mb-4">Collections</h1>
-            <p class="text-center text-gray-500 text-[10px] uppercase tracking-[4px] mb-12">Handmade Jewelry & Accessories</p>
-            <div id="partitions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+        <main class="container mx-auto px-4 py-16 max-w-7xl">
+            <h1 class="text-center text-5xl md:text-6xl font-bold text-[#834d58] mb-3">Our Collections</h1>
+            <p class="text-center text-gray-400 text-[11px] uppercase tracking-[5px] mb-16">Handmade Luxury Jewelry & Accessories</p>
+            <div id="partitions-grid" class="luxury-grid"></div>
         </main>
         
         <div class="py-12 px-4 max-w-4xl mx-auto w-full">
@@ -259,17 +329,18 @@
             
             sorted.forEach(x => {
                 html += `
-                <div class="collection-card rounded-3xl overflow-hidden shadow-md border border-transparent bg-white relative transition-all duration-300 hover:shadow-xl cursor-pointer">
+                <div class="collection-card">
                     ${isAdmin ? `
                     <div class="absolute top-4 right-4 z-50 flex gap-2">
-                        <button onclick="event.stopImmediatePropagation(); openForm('p', ${x.id})" class="bg-white w-9 h-9 rounded-2xl shadow flex items-center justify-center text-xl">✎</button>
-                        <button onclick="event.stopImmediatePropagation(); deleteData('p', ${x.id})" class="bg-white w-9 h-9 rounded-2xl shadow flex items-center justify-center text-2xl text-red-500">×</button>
+                        <button onclick="event.stopImmediatePropagation(); openForm('p', ${x.id})" class="bg-white/90 backdrop-blur w-9 h-9 rounded-xl shadow flex items-center justify-center text-xl hover:bg-white">✎</button>
+                        <button onclick="event.stopImmediatePropagation(); deleteData('p', ${x.id})" class="bg-white/90 backdrop-blur w-9 h-9 rounded-xl shadow flex items-center justify-center text-2xl text-red-500 hover:bg-white">×</button>
                     </div>` : ''}
                     ${isNew(x.createdAt) ? '<div class="new-badge">NEW</div>' : ''}
-                    <div onclick="openSubPage(${x.id})">
-                        <img src="${x.img || 'https://via.placeholder.com/600x700'}" class="w-full aspect-[4/4.5] object-cover">
-                        <div class="p-6">
-                            <h2 class="text-4xl partition-title text-[#834d58] drop-shadow-sm">${x.n || ''}</h2>
+                    <div onclick="openSubPage(${x.id})" class="w-full h-full block relative">
+                        <img src="${x.img || 'https://via.placeholder.com/600x700'}" alt="${x.n || ''}">
+                        <div class="glass-overlay">
+                            <h2 class="collection-title">${x.n || ''}</h2>
+                            <span class="arrow-icon">→</span>
                         </div>
                     </div>
                 </div>`;

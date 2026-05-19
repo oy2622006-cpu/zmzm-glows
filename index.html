@@ -66,6 +66,21 @@
             color: var(--brand-primary); 
         }
 
+        /* شكل تقليدي فخم للبارتيشنز */
+        .collection-card {
+            border-radius: 20px;
+            overflow: hidden;
+            border: 1px solid #e5d5d8;
+            background: white;
+            transition: all 0.5s ease;
+            box-shadow: 0 10px 20px rgba(131, 77, 88, 0.08);
+        }
+        .collection-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 35px rgba(131, 77, 88, 0.18);
+            border-color: var(--brand-primary);
+        }
+
         .new-badge {
             position: absolute;
             top: 12px;
@@ -80,14 +95,6 @@
             animation: pulse 2s infinite;
         }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
-
-        .collection-card, .item-card {
-            transition: all 0.4s ease;
-        }
-        .collection-card:hover, .item-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 15px 30px -8px rgba(131, 77, 88, 0.3);
-        }
     </style>
 </head>
 <body>
@@ -113,7 +120,7 @@
         <main class="container mx-auto px-4 py-10">
             <h1 class="text-center text-4xl md:text-5xl fancy-font mb-4">Collections</h1>
             <p class="text-center text-gray-500 text-[10px] uppercase tracking-[4px] mb-10">Handmade Jewelry & Accessories</p>
-            <div id="partitions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"></div>
+            <div id="partitions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </main>
         
         <div class="py-16 px-4 text-center">
@@ -145,6 +152,7 @@
         <div id="items-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 pb-20"></div>
     </div>
 
+    <!-- Modals -->
     <div id="admin-login-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-[99999]">
         <div class="bg-white rounded-3xl p-8 w-full max-w-sm mx-4 shadow-2xl">
             <h2 class="text-2xl font-bold text-center mb-6 text-[#834d58]">Admin Access</h2>
@@ -238,7 +246,7 @@
             
             sorted.forEach(x => {
                 html += `
-                <div class="collection-card rounded-3xl overflow-hidden shadow-md border border-transparent bg-white relative">
+                <div class="collection-card rounded-3xl overflow-hidden shadow-md border border-[#e5d5d8] bg-white relative">
                     ${isAdmin ? `
                     <div class="absolute top-4 right-4 z-50 flex gap-2">
                         <button onclick="event.stopImmediatePropagation(); openForm('p', ${x.id})" class="bg-white w-9 h-9 rounded-2xl shadow flex items-center justify-center text-xl">✎</button>
@@ -246,9 +254,9 @@
                     </div>` : ''}
                     ${isNew(x.createdAt) ? '<div class="new-badge">NEW</div>' : ''}
                     <div onclick="openSubPage(${x.id})">
-                        <img src="${x.img || 'https://via.placeholder.com/600x700'}" class="w-full aspect-[4/4.2] object-cover">
-                        <div class="p-5">
-                            <h2 class="text-xl md:text-2xl fancy-font text-[#834d58]">${x.n || ''}</h2>
+                        <img src="${x.img || 'https://via.placeholder.com/600x700'}" class="w-full aspect-[4/4.5] object-cover">
+                        <div class="p-6">
+                            <h2 class="text-2xl fancy-font text-[#834d58]">${x.n || ''}</h2>
                         </div>
                     </div>
                 </div>`;

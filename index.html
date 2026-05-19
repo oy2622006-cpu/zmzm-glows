@@ -20,7 +20,7 @@
             overflow-x: hidden; 
         }
 
-        /* حل نهائي وقاطع لمشكلة اهتزاز أو وقوف شريط الإعلانات */
+        /* حل نهائي لملء الفراغ وجعل الحركة سلسة لانهائية */
         .luxury-marquee-wrapper {
             background: #834d58;
             color: white;
@@ -33,7 +33,7 @@
         .luxury-marquee-track {
             display: flex;
             width: max-content;
-            animation: slideLuxuryBanner 20s linear infinite;
+            animation: slideLuxuryBanner 25s linear infinite;
         }
         .marquee-group {
             display: flex;
@@ -43,17 +43,16 @@
             font-size: 13px !important; 
             letter-spacing: 4px !important;
             font-weight: 600;
-            padding: 0 30px;
+            padding: 0 40px;
             display: inline-block;
         }
         
-        /* تأثير الحركة السلسة اللانهائية بالاعتماد على مصفوفة النقل ثلاثية الأبعاد */
         @keyframes slideLuxuryBanner {
             0% { transform: translate3d(0, 0, 0); }
-            100% { transform: translate3d(-50%, 0, 0); }
+            100% { transform: translate3d(-33.333%, 0, 0); }
         }
 
-        /* تنسيق اللوجو الأصلي المثالي */
+        /* تعديل الاسم الأصلي الحرفي الصريح */
         .logo-container { 
             display: flex; 
             justify-content: center; 
@@ -82,6 +81,7 @@
         .logo-container span:nth-child(7) { animation-delay: 0.65s; }
         .logo-container span:nth-child(8) { animation-delay: 0.75s; }
         .logo-container span:nth-child(9) { animation-delay: 0.85s; }
+        .logo-container span:nth-child(10) { animation-delay: 0.95s; }
 
         .fancy-font { 
             font-family: 'Dancing Script', cursive; 
@@ -179,14 +179,19 @@
     <div class="luxury-marquee-wrapper uppercase font-bold">
         <div class="luxury-marquee-track">
             <div class="marquee-group">
-                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
-                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
-                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
             </div>
             <div class="marquee-group">
-                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
-                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
-                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
+            </div>
+            <div class="marquee-group">
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
             </div>
         </div>
     </div>

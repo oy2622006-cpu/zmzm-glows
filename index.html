@@ -80,42 +80,22 @@
             color: var(--brand-primary); 
         }
 
-        .luxury-grid {
-            display: grid;
-            grid-template-columns: repeat(1, minmax(0, 1fr));
-            gap: 24px;
-        }
-        @media (min-width: 640px) {
-            .luxury-grid {
-                grid-template-columns: repeat(6, minmax(0, 1fr));
-            }
-            .luxury-grid > div:nth-child(5n+1) { grid-column: span 4; height: 450px; }
-            .luxury-grid > div:nth-child(5n+2) { grid-column: span 2; height: 450px; }
-            .luxury-grid > div:nth-child(5n+3) { grid-column: span 2; height: 400px; }
-            .luxury-grid > div:nth-child(5n+4) { grid-column: span 2; height: 400px; }
-            .luxury-grid > div:nth-child(5n+5) { grid-column: span 2; height: 400px; }
-        }
-
         .collection-card {
             position: relative;
-            border-radius: 24px;
+            border-radius: 28px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(131, 77, 88, 0.04);
+            box-shadow: 0 10px 30px rgba(131, 77, 88, 0.03);
             transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            height: 380px;
         }
         .collection-card:hover {
-            transform: translateY(-8px);
-            box-shadow: 0 20px 40px rgba(131, 77, 88, 0.12);
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(131, 77, 88, 0.1);
         }
         .collection-card img {
-            width: 100%;
-            height: 100%;
-            object-cover: cover;
-            transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
         .collection-card:hover img {
-            transform: scale(1.06);
+            transform: scale(1.05);
         }
 
         .glass-overlay {
@@ -123,16 +103,17 @@
             bottom: 20px;
             left: 20px;
             right: 20px;
-            background: rgba(255, 255, 255, 0.82);
+            background: rgba(255, 255, 255, 0.85);
             backdrop-filter: blur(12px);
             -webkit-backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 18px;
-            padding: 16px 24px;
+            border-radius: 20px;
+            padding: 18px 24px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            transition: all 0.3s ease;
+            transition: all 0.35s ease;
+            z-index: 10;
         }
         .collection-card:hover .glass-overlay {
             background: rgba(131, 77, 88, 0.95);
@@ -141,17 +122,17 @@
         .collection-title {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 1.65rem;
+            font-size: 1.6rem;
             color: var(--brand-primary);
-            transition: color 0.3s ease;
+            transition: color 0.35s ease;
         }
         .collection-card:hover .collection-title {
             color: #ffffff;
         }
         .arrow-icon {
             color: var(--brand-primary);
-            font-size: 1.25rem;
-            transition: all 0.3s ease;
+            font-size: 1.3rem;
+            transition: all 0.35s ease;
         }
         .collection-card:hover .arrow-icon {
             color: #ffffff;
@@ -164,9 +145,9 @@
             left: 20px;
             background: #c48b9f;
             color: white;
-            padding: 6px 16px;
+            padding: 5px 14px;
             border-radius: 50px;
-            font-size: 10px;
+            font-size: 9px;
             font-weight: bold;
             z-index: 20;
             letter-spacing: 1px;
@@ -183,7 +164,7 @@
 
     <nav class="p-5 text-center border-b sticky top-0 bg-white/95 backdrop-blur-md z-50">
         <div class="logo-container" onclick="goHome()">
-            <span>Z</span><span>M</span><span>Z</span><span>M</span><span>&nbsp;</span><span>G</span><span>L</span><span>O</span><span>W</span><span>S</span>
+            <span>Z</span><span>M</span><span>Check</span><span>M</span><span>&nbsp;</span><span>G</span><span>L</span><span>O</span><span>W</span><span>S</span>
         </div>
     </nav>
 
@@ -200,7 +181,7 @@
         <main class="container mx-auto px-4 py-16 max-w-7xl">
             <h1 class="text-center text-5xl md:text-6xl font-bold text-[#834d58] mb-3">Our Collections</h1>
             <p class="text-center text-gray-400 text-[11px] uppercase tracking-[5px] mb-16">Handmade Luxury Jewelry & Accessories</p>
-            <div id="partitions-grid" class="luxury-grid"></div>
+            <div id="partitions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
         </main>
         
         <div class="py-12 px-4 max-w-4xl mx-auto w-full">
@@ -336,8 +317,8 @@
                         <button onclick="event.stopImmediatePropagation(); deleteData('p', ${x.id})" class="bg-white/90 backdrop-blur w-9 h-9 rounded-xl shadow flex items-center justify-center text-2xl text-red-500 hover:bg-white">×</button>
                     </div>` : ''}
                     ${isNew(x.createdAt) ? '<div class="new-badge">NEW</div>' : ''}
-                    <div onclick="openSubPage(${x.id})" class="w-full h-full block relative">
-                        <img src="${x.img || 'https://via.placeholder.com/600x700'}" alt="${x.n || ''}">
+                    <div onclick="openSubPage(${x.id})" class="w-full h-full block relative cursor-pointer">
+                        <img src="${x.img || 'https://via.placeholder.com/600x700'}" alt="${x.n || ''}" class="w-full aspect-[4/5] object-cover">
                         <div class="glass-overlay">
                             <h2 class="collection-title">${x.n || ''}</h2>
                             <span class="arrow-icon">→</span>

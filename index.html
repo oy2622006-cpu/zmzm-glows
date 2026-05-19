@@ -20,7 +20,7 @@
             overflow-x: hidden; 
         }
 
-        /* Sliding Banner */
+        /* Banner متحرك بشكل ناعم */
         .top-banner {
             background: #834d58;
             color: white;
@@ -29,25 +29,48 @@
         }
         .banner-text {
             display: inline-block;
-            padding-right: 100px;
-            animation: slideText 20s linear infinite;
+            padding-right: 120px;
+            animation: slideBanner 25s linear infinite;
         }
-        @keyframes slideText {
+        @keyframes slideBanner {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
-        /* Elegant Traditional Collection Cards */
-        .collection-card {
-            border-radius: 20px;
-            overflow: hidden;
-            background: white;
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
-            transition: all 0.5s ease;
+        .logo-container { 
+            display: flex; 
+            justify-content: center; 
+            gap: 3px; 
+            cursor: pointer; 
         }
-        .collection-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 25px 45px rgba(131, 77, 88, 0.2);
+        .logo-container span {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 2.55rem;
+            color: var(--brand-primary);
+            display: inline-block;
+            animation: fancyBounce 2.8s infinite ease-in-out;
+            text-shadow: 0 4px 12px rgba(131, 77, 88, 0.25);
+            transform: skew(-12deg);
+        }
+        @keyframes fancyBounce {
+            0%, 100% { transform: skew(-12deg) translateY(0) rotate(0deg); }
+            50% { transform: skew(-12deg) translateY(-26px) rotate(5deg); }
+        }
+        .logo-container span:nth-child(1) { animation-delay: 0.05s; }
+        .logo-container span:nth-child(2) { animation-delay: 0.18s; }
+        .logo-container span:nth-child(3) { animation-delay: 0.31s; }
+        .logo-container span:nth-child(4) { animation-delay: 0.44s; }
+        .logo-container span:nth-child(5) { animation-delay: 0.57s; }
+        .logo-container span:nth-child(6) { animation-delay: 0.70s; }
+        .logo-container span:nth-child(7) { animation-delay: 0.83s; }
+        .logo-container span:nth-child(8) { animation-delay: 0.96s; }
+        .logo-container span:nth-child(9) { animation-delay: 1.09s; }
+        .logo-container span:nth-child(10){ animation-delay: 1.22s; }
+
+        .fancy-font { 
+            font-family: 'Dancing Script', cursive; 
+            color: var(--brand-primary); 
         }
 
         .new-badge {
@@ -78,11 +101,11 @@
         </div>
     </nav>
 
-    <!-- Sliding Banner -->
-    <div class="top-banner text-white text-[9px] tracking-[2px] py-3 text-center uppercase font-bold overflow-hidden">
+    <!-- البانر المتحرك (الكلام بيتحرك بشكل ناعم) -->
+    <div class="top-banner text-white text-[9px] tracking-[3px] py-3 text-center uppercase font-bold overflow-hidden">
         <div class="banner-text">
-            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
     </div>
 
@@ -114,7 +137,6 @@
         <footer class="py-10 text-center text-gray-400 text-[10px] tracking-widest uppercase">&copy; 2026 ZMZM GLOWS.</footer>
     </div>
 
-    <!-- Items Page -->
     <div id="items-ui" class="hidden container mx-auto px-4 py-10">
         <button onclick="goHome()" class="mb-8 text-[#834d58] font-bold text-xs uppercase tracking-widest flex items-center gap-1">
             ← Back to Collections
@@ -123,7 +145,7 @@
         <div id="items-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 pb-20"></div>
     </div>
 
-    <!-- Admin Login -->
+    <!-- Modals -->
     <div id="admin-login-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-[99999]">
         <div class="bg-white rounded-3xl p-8 w-full max-w-sm mx-4 shadow-2xl">
             <h2 class="text-2xl font-bold text-center mb-6 text-[#834d58]">Admin Access</h2>
@@ -137,8 +159,44 @@
         </div>
     </div>
 
-    <!-- Other Modals and Script remain the same as previous clean version -->
-    <!-- (To save space, the rest is identical to the last clean version) -->
+    <div id="cart-modal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[9999] p-4">
+        <div class="max-w-md w-full bg-white rounded-3xl p-8">
+            <h2 class="text-4xl fancy-font text-[#834d58] mb-8 text-center">Your Cart</h2>
+            <div id="cart-items-list" class="space-y-4 mb-8"></div>
+            <div class="border-t pt-6">
+                <div class="flex justify-between mb-8">
+                    <span class="font-bold uppercase tracking-widest">Total</span>
+                    <span id="cart-total" class="text-xl font-black text-[#834d58]">0 EGP</span>
+                </div>
+                <button onclick="checkoutWhatsApp()" class="w-full bg-gradient-to-r from-[#834d58] to-[#c48b9f] text-white p-5 rounded-full font-bold">Checkout via WhatsApp</button>
+                <button onclick="closeCart()" class="w-full text-gray-400 py-4 mt-3">Continue Shopping</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="admin-modal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[9999] p-4">
+        <div class="max-w-md w-full bg-white rounded-3xl p-8">
+            <h2 class="text-2xl font-bold text-[#834d58] mb-6">Admin Panel</h2>
+            <div class="space-y-5">
+                <input type="text" id="f_name" placeholder="Name (Optional)" class="w-full border-b p-3 outline-none focus:border-[#834d58]">
+                <div id="price-fields" class="hidden grid grid-cols-2 gap-4">
+                    <input type="number" id="f_price" placeholder="Price" class="border-b p-3 outline-none">
+                    <input type="number" id="f_sale" placeholder="Sale Price" class="border-b p-3 outline-none">
+                </div>
+                <div class="py-4 text-center border-2 border-dashed border-gray-200 rounded-2xl">
+                    <input type="file" id="f_file" accept="image/*">
+                </div>
+                <div id="soldout-field" class="hidden">
+                    <label class="flex items-center gap-2">
+                        <input type="checkbox" id="f_soldout" class="w-5 h-5 accent-[#834d58]">
+                        <span>Mark as Sold Out</span>
+                    </label>
+                </div>
+                <button onclick="saveData()" class="w-full bg-gradient-to-r from-[#834d58] to-[#c48b9f] text-white p-4 rounded-full font-bold">Confirm</button>
+                <button onclick="closeModal()" class="w-full text-gray-400 py-3">Cancel</button>
+            </div>
+        </div>
+    </div>
 
     <div id="cart-btn" class="fixed bottom-6 left-6 bg-gradient-to-r from-[#834d58] to-[#c48b9f] text-white px-6 py-3.5 rounded-full flex items-center gap-2 shadow-xl cursor-pointer hidden" onclick="openCart()">
         🛒 <span id="cart-count-badge" class="font-bold">0</span>
@@ -181,7 +239,7 @@
             
             sorted.forEach(x => {
                 html += `
-                <div class="collection-card relative">
+                <div class="collection-card rounded-3xl overflow-hidden shadow-md border border-transparent bg-white relative">
                     ${isAdmin ? `
                     <div class="absolute top-4 right-4 z-50 flex gap-2">
                         <button onclick="event.stopImmediatePropagation(); openForm('p', ${x.id})" class="bg-white w-9 h-9 rounded-2xl shadow flex items-center justify-center text-xl">✎</button>
@@ -189,8 +247,8 @@
                     </div>` : ''}
                     ${isNew(x.createdAt) ? '<div class="new-badge">NEW</div>' : ''}
                     <div onclick="openSubPage(${x.id})">
-                        <img src="${x.img || 'https://via.placeholder.com/600x700'}" class="w-full aspect-[4/4.2] object-cover">
-                        <div class="p-6 text-center bg-white border-t">
+                        <img src="${x.img || 'https://via.placeholder.com/600x700'}" class="w-full aspect-[4/4.5] object-cover">
+                        <div class="p-6">
                             <h2 class="text-2xl fancy-font text-[#834d58]">${x.n || ''}</h2>
                         </div>
                     </div>

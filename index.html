@@ -7,7 +7,7 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-app-compat.js"></script>
     <script src="https://www.gstatic.com/firebasejs/9.6.1/firebase-database-compat.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Monsieur+La+Douise&family=Alex+Brush&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Alex+Brush&display=swap" rel="stylesheet">
     
     <style>
         :root { 
@@ -15,6 +15,7 @@
             --brand-dark: #1a1a1a;
             --bg-creamy: #fdfbf7;
             --gold-border: linear-gradient(135deg, #e5c07b, #f3e0d9, #b38f43, #fffaf5);
+            --gold-soft: #e5c07b;
         }
         body { 
             font-family: 'Montserrat', sans-serif; 
@@ -23,7 +24,6 @@
             overflow-x: hidden;
         }
 
-        /* شريط الإعلانات الفاخر المتحرك */
         .luxury-marquee-wrapper {
             background: var(--brand-primary);
             color: #ffffff;
@@ -54,25 +54,94 @@
             100% { transform: translate3d(-33.333%, 0, 0); }
         }
 
-        /* اللوجو الجديد الفخم المطابق تماماً للصورة */
         .brand-official-logo {
             font-family: 'Playfair Display', serif;
             font-weight: 500;
             font-size: 2.3rem;
             font-style: italic;
-            color: var(--brand-dark);
+            color: var(--brand-primary);
             letter-spacing: -0.5px;
             text-transform: none;
+            display: inline-flex;
+        }
+        .brand-official-logo span {
+            display: inline-block;
+            animation: luxuryBounce 2.5s ease-in-out infinite;
+        }
+        .brand-official-logo span:nth-child(1) { animation-delay: 0.0s; }
+        .brand-official-logo span:nth-child(2) { animation-delay: 0.1s; }
+        .brand-official-logo span:nth-child(3) { animation-delay: 0.2s; }
+        .brand-official-logo span:nth-child(4) { animation-delay: 0.3s; }
+        .brand-official-logo span:nth-child(5) { animation-delay: 0.4s; }
+        .brand-official-logo span:nth-child(6) { animation-delay: 0.5s; }
+        .brand-official-logo span:nth-child(7) { animation-delay: 0.6s; }
+        .brand-official-logo span:nth-child(8) { animation-delay: 0.7s; }
+        .brand-official-logo span:nth-child(9) { animation-delay: 0.8s; }
+        .brand-official-logo span:nth-child(10) { animation-delay: 0.9s; }
+        .brand-official-logo span:nth-child(11) { animation-delay: 1.0s; }
+
+        @keyframes luxuryBounce {
+            0%, 20%, 100% { transform: translateY(0); }
+            10% { transform: translateY(-8px); }
         }
 
-        /* شبكة العرض الفاخرة */
         .luxury-clean-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(290px, 1fr));
             gap: 40px;
         }
 
-        /* تصميم الكارت الجديد الموحد */
+        .luxury-partition-card {
+            display: flex;
+            flex-direction: column;
+            background: #ffffff;
+            border-radius: 24px;
+            overflow: hidden;
+            box-shadow: 0 4px 20px rgba(112, 66, 77, 0.02);
+            border: 1px solid rgba(229, 192, 123, 0.15);
+            transition: all 0.5s cubic-bezier(0.25, 0.8, 0.25, 1);
+            position: relative;
+        }
+        .luxury-partition-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 24px 48px rgba(112, 66, 77, 0.08);
+            border-color: var(--gold-soft);
+        }
+        .partition-image-wrapper {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 3 / 4;
+            overflow: hidden;
+            background: #f7f7f7;
+        }
+        .partition-image-wrapper img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 1.2s cubic-bezier(0.15, 0.85, 0.35, 1);
+        }
+        .luxury-partition-card:hover .partition-image-wrapper img {
+            transform: scale(1.08);
+        }
+        .partition-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, transparent 40%, rgba(112, 66, 77, 0.15));
+            opacity: 0;
+            transition: opacity 0.5s ease;
+            pointer-events: none;
+        }
+        .luxury-partition-card:hover .partition-overlay {
+            opacity: 1;
+        }
+        .partition-meta-box {
+            padding: 24px 20px;
+            text-align: center;
+            background: #ffffff;
+            border-top: 1px solid rgba(229, 192, 123, 0.1);
+            z-index: 10;
+        }
+
         .luxury-item-card {
             display: flex;
             flex-direction: column;
@@ -110,12 +179,10 @@
             transform: scale(1.05);
         }
 
-        /* تفاصيل الخطوط أسفل الكروت */
         .card-meta-title {
             font-family: 'Alex Brush', cursive;
-            font-size: 2.2rem;
+            font-size: 2.4rem;
             color: var(--brand-dark);
-            margin-top: 10px;
             line-height: 1.2;
         }
         .card-meta-sub {
@@ -123,28 +190,25 @@
             text-transform: uppercase;
             letter-spacing: 2px;
             color: #8c8c8c;
-            margin-top: 2px;
+            margin-top: 4px;
             font-weight: 500;
         }
 
-        /* بادج ناعم للمنتجات الجديدة */
         .luxury-mini-badge {
             position: absolute;
             top: 20px;
             left: 20px;
-            background: #ffffff;
-            color: var(--brand-dark);
-            padding: 4px 12px;
+            background: var(--brand-primary);
+            color: #ffffff;
+            padding: 4px 14px;
             border-radius: 30px;
             font-size: 9px;
             font-weight: 700;
             letter-spacing: 1.5px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.04);
-            border: 1px solid rgba(229, 192, 123, 0.3);
-            z-index: 10;
+            box-shadow: 0 4px 12px rgba(112, 66, 77, 0.15);
+            z-index: 20;
         }
 
-        /* قسم تواصل معنا الكبير الفخم والمطابق للصورة */
         .connect-master-card {
             background: #ffffff;
             border-radius: 40px;
@@ -209,7 +273,6 @@
             .brand-official-logo { font-size: 1.8rem; }
         }
 
-        /* زر الإضافة للسلة الراقي */
         .action-bag-btn {
             width: 100%;
             margin-top: 14px;
@@ -255,16 +318,16 @@
 
     <nav class="py-6 px-6 md:px-12 border-b border-gray-50 bg-white/80 backdrop-blur-md sticky top-0 z-50 flex items-center justify-between">
         <div class="flex gap-6 text-xs font-medium uppercase tracking-widest text-gray-500">
-            <a href="#" onclick="goHome()" class="hover:text-[#70424d] transition">Home</a>
-            <a href="#" class="hover:text-[#70424d] transition">About</a>
+            <a href="javascript:void(0)" onclick="goHome()" class="hover:text-[#70424d] transition">Home</a>
+            <a href="javascript:void(0)" class="hover:text-[#70424d] transition">About</a>
         </div>
         
         <div class="brand-official-logo cursor-pointer" onclick="goHome()">
-            ZMZM GLOWS
+            <span>Z</span><span>M</span><span>Z</span><span>M</span><span>&nbsp;</span><span>G</span><span>L</span><span>O</span><span>W</span><span>S</span>
         </div>
         
         <div class="flex gap-6 text-xs font-medium uppercase tracking-widest text-gray-500 items-center">
-            <a href="#" class="hover:text-[#70424d] transition flex items-center gap-1">Contact</a>
+            <a href="javascript:void(0)" class="hover:text-[#70424d] transition flex items-center gap-1">Get in Touch</a>
             <div class="relative cursor-pointer text-sm" onclick="openCart()">🛒 <span id="nav-cart-count" class="font-bold text-[#70424d]">0</span></div>
             <div onclick="showAdminLogin()" class="cursor-pointer text-sm opacity-60 hover:opacity-100">⚙️</div>
         </div>
@@ -272,7 +335,7 @@
 
     <div id="main-ui" class="container mx-auto px-6 py-16 max-w-7xl">
         <div class="text-center mb-16">
-            <h1 class="font-serif text-5xl md:text-6xl text-gray-900 font-normal tracking-wide mb-2" style="font-family: 'Playfair Display', serif;">Collections</h1>
+            <h1 class="font-serif text-5xl md:text-6xl text-[#70424d] font-bold tracking-wide mb-2" style="font-family: 'Playfair Display', serif;">Collections</h1>
             <p class="text-gray-400 text-[10px] uppercase tracking-[5px]">Handmade Jewelry & Accessories</p>
         </div>
         
@@ -293,19 +356,19 @@
 
     <div class="px-6 w-full">
         <div class="connect-master-card">
-            <h2 class="connect-title">Connect With Us</h2>
+            <h2 class="connect-title">Get in Touch</h2>
             <p class="connect-subtitle">WE'D LOVE TO HEAR FROM YOU</p>
             
             <div class="connect-grid-buttons">
-                <a href="https://www.instagram.com/zmzm_glowsss" target="_blank" class="connect-btn-item">
+                <a href="https://www.instagram.com/zmzm_glowsss" target="_blank" rel="noopener noreferrer" class="connect-btn-item">
                     <div class="connect-icon-img">📸</div>
                     <span class="connect-label-text">Instagram</span>
                 </a>
-                <a href="https://wa.me/201140492104" target="_blank" class="connect-btn-item">
+                <a href="https://wa.me/201140492104" target="_blank" rel="noopener noreferrer" class="connect-btn-item">
                     <div class="connect-icon-img">💬</div>
                     <span class="connect-label-text">WhatsApp</span>
                 </a>
-                <a href="https://www.tiktok.com/@zmzmglowwss" target="_blank" class="connect-btn-item">
+                <a href="https://www.tiktok.com/@zmzmglowwss" target="_blank" rel="noopener noreferrer" class="connect-btn-item">
                     <div class="connect-icon-img">🎵</div>
                     <span class="connect-label-text">TikTok</span>
                 </a>
@@ -334,10 +397,12 @@
             <h2 class="text-xl font-bold text-[#70424d] mb-6">Modify Shop Inventory</h2>
             <div class="space-y-4">
                 <input type="text" id="f_name" placeholder="Title / Name" class="w-full border-b py-3 outline-none focus:border-[#70424d] text-sm">
+                
                 <div id="price-fields" class="hidden grid grid-cols-2 gap-4">
                     <input type="number" id="f_price" placeholder="Original Price (EGP)" class="border-b py-3 outline-none text-sm">
                     <input type="number" id="f_sale" placeholder="Sale Price (Optional)" class="border-b py-3 outline-none text-sm">
                 </div>
+                
                 <div class="py-6 text-center border-2 border-dashed border-gray-200 rounded-2xl bg-gray-50 cursor-pointer relative">
                     <p class="text-xs text-gray-400 font-medium">Click to upload image</p>
                     <input type="file" id="f_file" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer">
@@ -356,7 +421,7 @@
 
     <div id="cart-modal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[9999] p-4">
         <div class="max-w-md w-full bg-white rounded-3xl p-8 shadow-2xl">
-            <h2 class="text-2xl font-serif italic text-[#70424d] mb-6 text-center" style="font-family: 'Playfair Display', serif;">Shopping Bag</h2>
+            <h2 class="text-2xl font-serif italic text-[#70424d] mb-6 text-center" style="font-family: 'Playfair Display', serif;">Shopping Cart</h2>
             <div id="cart-items-list" class="space-y-3 max-h-[300px] overflow-y-auto mb-6"></div>
             <div class="border-t pt-4">
                 <div class="flex justify-between mb-6 items-center">
@@ -370,11 +435,10 @@
     </div>
 
     <div id="cart-btn" class="fixed bottom-6 left-6 bg-[#70424d] text-white px-5 py-3.5 rounded-full flex items-center gap-2 shadow-2xl cursor-pointer hidden z-50 text-xs font-bold tracking-widest uppercase" onclick="openCart()">
-        🛍️ Bag (<span id="cart-count-badge">0</span>)
+        🛍️ Cart (<span id="cart-count-badge">0</span>)
     </div>
 
     <script>
-        // ربط قاعدة بيانات الفايربيس الرسمية المعتمدة للموقع
         const firebaseConfig = { databaseURL: "https://zmzm-glows-75ffc-default-rtdb.firebaseio.com/" };
         firebase.initializeApp(firebaseConfig);
         const database = firebase.database();
@@ -385,9 +449,20 @@
         let cart = [];
         let isAdmin = false;
 
+        function escapeHTML(str) {
+            if (!str) return '';
+            return str.replace(/[&<>"']/g, function(m) {
+                return { '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#039;' }[m];
+            });
+        }
+
         database.ref('shop').on('value', (snapshot) => {
             const data = snapshot.val();
-            if (data) db = data;
+            if (data && Array.isArray(data.p)) {
+                db = data;
+            } else {
+                db = { p: [] };
+            }
             render();
             if (activePId) openSubPage(activePId);
         });
@@ -397,29 +472,35 @@
             return (Date.now() - createdAt) / (1000 * 60 * 60 * 24) <= 3;
         }
 
-        // رندر الواجهة الخارجية للمجموعات بالديزاين الموحد الجديد
         function render() {
             const grid = document.getElementById('partitions-grid');
+            if (!grid) return;
             let html = '';
-            const sorted = [...(db.p || [])].sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
+            const list = db.p || [];
+            const sorted = [...list].sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
             
             sorted.forEach((x) => {
+                if (!x) return;
                 const itemCount = x.items ? Object.keys(x.items).length : 0;
+                const safeName = escapeHTML(x.n || 'Collection');
+                const safeImg = x.img ? encodeURI(x.img) : 'https://via.placeholder.com/600';
+                
                 html += `
-                <div class="luxury-item-card">
-                    <div class="image-gold-frame">
+                <div class="luxury-partition-card">
+                    <div class="partition-image-wrapper">
                         ${isAdmin ? `
                         <div class="absolute top-3 right-3 z-40 flex gap-1">
-                            <button onclick="event.stopImmediatePropagation(); openForm('p', ${x.id})" class="bg-white/95 w-7 h-7 rounded-lg shadow text-xs hover:bg-white">✎</button>
-                            <button onclick="event.stopImmediatePropagation(); deleteData('p', ${x.id})" class="bg-white/95 w-7 h-7 rounded-lg shadow text-sm text-red-500 hover:bg-white">×</button>
+                            <button onclick="event.stopImmediatePropagation(); openForm('p', ${x.id})" class="bg-white/95 w-7 h-7 rounded-lg shadow text-xs hover:bg-white flex items-center justify-center font-sans font-bold">✎</button>
+                            <button onclick="event.stopImmediatePropagation(); deleteData('p', ${x.id})" class="bg-white/95 w-7 h-7 rounded-lg shadow text-sm text-red-500 hover:bg-white flex items-center justify-center font-sans font-bold">×</button>
                         </div>` : ''}
                         ${isNew(x.createdAt) ? '<div class="luxury-mini-badge">NEW</div>' : ''}
-                        <div onclick="openSubPage(${x.id})" class="card-inner-image cursor-pointer">
-                            <img src="${x.img || 'https://via.placeholder.com/600'}" alt="${x.n || ''}">
+                        <div onclick="openSubPage(${x.id})" class="w-full h-full cursor-pointer">
+                            <img src="${safeImg}" alt="${safeName}">
+                            <div class="partition-overlay"></div>
                         </div>
                     </div>
-                    <div class="cursor-pointer text-center" onclick="openSubPage(${x.id})">
-                        <h3 class="card-meta-title">${x.n || 'Collection'}</h3>
+                    <div class="partition-meta-box cursor-pointer" onclick="openSubPage(${x.id})">
+                        <h3 class="card-meta-title">${safeName}</h3>
                         <p class="card-meta-sub">${itemCount} Items Available</p>
                     </div>
                 </div>`;
@@ -427,53 +508,62 @@
             grid.innerHTML = html || '<p class="text-center text-gray-400 py-12 col-span-full text-xs tracking-widest uppercase">No collections created yet.</p>';
         }
 
-        // رندر المنتجات من داخل المجموعة بنفس الفخامة والجمال لضمان تناسق الموقع
         function openSubPage(id) {
             activePId = id;
-            const p = db.p.find(x => x.id === id);
+            const p = db.p ? db.p.find(x => x && x.id === id) : null;
             if (!p) return;
 
             document.getElementById('current-p-title').innerText = p.n || "Collection";
-            document.getElementById('add-i-btn').style.display = isAdmin ? 'block' : 'none';
-            if (isAdmin) document.getElementById('add-i-btn').onclick = () => openForm('i');
+            const addBtn = document.getElementById('add-i-btn');
+            if (addBtn) {
+                addBtn.style.display = isAdmin ? 'block' : 'none';
+                if (isAdmin) addBtn.onclick = () => openForm('i');
+            }
 
             let html = '';
             const items = p.items || [];
+            const grid = document.getElementById('items-grid');
+            if (!grid) return;
             
             if (items.length === 0) {
-                document.getElementById('items-grid').innerHTML = '<p class="text-center text-gray-400 w-full col-span-full py-12 text-xs tracking-widest uppercase">This collection is currently empty.</p>';
+                grid.innerHTML = '<p class="text-center text-gray-400 w-full col-span-full py-12 text-xs tracking-widest uppercase">This collection is currently empty.</p>';
             } else {
                 [...items].sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0)).forEach((i) => {
+                    if (!i) return;
+                    const safeItemName = escapeHTML(i.n || 'Handmade Piece');
+                    const safeItemImg = i.img ? encodeURI(i.img) : 'https://via.placeholder.com/600';
+                    const passedName = safeItemName.replace(/'/g, "\\'");
+                    
                     html += `
                     <div class="luxury-item-card">
                         <div class="image-gold-frame">
                             ${i.soldOut ? '<div class="absolute inset-0 bg-black/30 backdrop-blur-[1px] z-30 rounded-[23px] flex items-center justify-center text-white font-bold tracking-widest text-[10px]">SOLD OUT</div>' : ''}
-                            ${i.s ? '<div class="luxury-mini-badge" style="color:#70424d;">SALE</div>' : ''}
+                            ${i.s ? '<div class="luxury-mini-badge">SALE</div>' : ''}
                             ${isAdmin ? `
                             <div class="absolute top-3 right-3 z-40 flex gap-1">
                                 <button onclick="event.stopImmediatePropagation(); openForm('i', ${i.id})" class="bg-white/95 w-7 h-7 rounded-lg shadow text-xs">✎</button>
                                 <button onclick="event.stopImmediatePropagation(); deleteData('i', ${i.id})" class="bg-white/95 w-7 h-7 rounded-lg shadow text-sm text-red-500">×</button>
                             </div>` : ''}
                             <div class="card-inner-image">
-                                <img src="${i.img || 'https://via.placeholder.com/600'}" class="w-full h-full object-cover">
+                                <img src="${safeItemImg}" class="w-full h-full object-cover">
                             </div>
                         </div>
-                        <div class="text-center">
-                            <h3 class="card-meta-title" style="font-size: 1.9rem;">${i.n || 'Handmade Piece'}</h3>
+                        <div class="text-center mt-3">
+                            <h3 class="card-meta-title" style="font-size: 1.9rem;">${safeItemName}</h3>
                             <div class="text-xs font-bold text-[#70424d] mt-1 font-sans">
                                 ${i.s 
-                                    ? `<span class="line-through text-gray-400 mr-2 font-normal">${i.p} EGP</span><span>${i.s} EGP</span>`
-                                    : `<span>${i.p || '0'} EGP</span>`
+                                    ? `<span class="line-through text-gray-400 mr-2 font-normal">${escapeHTML(String(i.p))} EGP</span><span>${escapeHTML(String(i.s))} EGP</span>`
+                                    : `<span>${escapeHTML(String(i.p || '0'))} EGP</span>`
                                 }
                             </div>
-                            <button onclick="addToCart('${(i.n || 'Product').replace(/'/g, "\\'")}', ${i.s || i.p})" 
+                            <button onclick="addToCart('${passedName}', ${parseFloat(i.s || i.p || 0)})" 
                                     class="action-bag-btn ${i.soldOut ? 'opacity-40 pointer-events-none' : ''}">
-                                ${i.soldOut ? 'Out Of Stock' : 'Add to Bag'}
+                                ${i.soldOut ? 'Out Of Stock' : 'Add to Cart'}
                             </button>
                         </div>
                     </div>`;
                 });
-                document.getElementById('items-grid').innerHTML = html;
+                grid.innerHTML = html;
             }
 
             document.getElementById('main-ui').classList.add('hidden');
@@ -495,8 +585,8 @@
                 total += parseFloat(item.p || 0);
                 html += `<div class="flex justify-between items-center bg-gray-50 p-4 rounded-xl text-xs">
                     <div>
-                        <p class="font-semibold text-gray-900 font-sans">${item.n}</p>
-                        <p class="text-[#70424d] font-bold mt-0.5 font-sans">${item.p} EGP</p>
+                        <p class="font-semibold text-gray-900 font-sans">${escapeHTML(item.n)}</p>
+                        <p class="text-[#70424d] font-bold mt-0.5 font-sans">${escapeHTML(String(item.p))} EGP</p>
                     </div>
                     <button onclick="removeFromCart(${idx})" class="text-red-500 font-medium hover:underline">Remove</button>
                 </div>`;
@@ -532,18 +622,18 @@
                 if (!db.p) db.p = [];
                 if (mode.type === 'p') {
                     if (mode.id) {
-                        let item = db.p.find(a => a.id === mode.id);
+                        let item = db.p.find(a => a && a.id === mode.id);
                         if (item) item.n = name || item.n;
                         if (imgBase64) item.img = imgBase64;
                     } else {
                         db.p.unshift({ id: Date.now(), n: name || "", img: imgBase64, items: [], createdAt: Date.now() });
                     }
                 } else {
-                    let p = db.p.find(a => a.id === activePId);
+                    let p = db.p.find(a => a && a.id === activePId);
                     if (!p) return;
                     if (!p.items) p.items = [];
                     if (mode.id) {
-                        let item = p.items.find(a => a.id === mode.id);
+                        let item = p.items.find(a => a && a.id === mode.id);
                         if (item) {
                             item.n = name || item.n;
                             item.p = price;
@@ -568,9 +658,9 @@
                     const img = new Image();
                     img.onload = () => {
                         const canvas = document.createElement('canvas');
-                        canvas.width = 700;
-                        canvas.height = 700; // اقتصاص احترافي بنسبة مربعة 1:1 لتناسب الاستايل الفاخر
-                        canvas.getContext('2d').drawImage(img, 0, 0, 700, 700);
+                        canvas.width = 600;
+                        canvas.height = 800; 
+                        canvas.getContext('2d').drawImage(img, 0, 0, 600, 800);
                         process(canvas.toDataURL('image/jpeg', 0.88));
                     };
                     img.src = e.target.result;
@@ -606,7 +696,7 @@
             if (document.getElementById('f_soldout')) document.getElementById('f_soldout').checked = false;
 
             if (id) {
-                let item = type === 'p' ? db.p.find(x => x.id === id) : db.p.find(x => x.id === activePId)?.items?.find(x => x.id === id);
+                let item = type === 'p' ? db.p.find(x => x && x.id === id) : db.p.find(x => x && x.id === activePId)?.items?.find(x => x && x.id === id);
                 if (item) {
                     document.getElementById('f_name').value = item.n || '';
                     if (type === 'i') {
@@ -620,10 +710,11 @@
 
         function deleteData(type, id) {
             if (!isAdmin || !confirm("Are you sure you want to delete this?")) return;
-            if (type === 'p') db.p = db.p.filter(x => x.id !== id);
-            else {
-                const p = db.p.find(x => x.id === activePId);
-                if (p) p.items = p.items.filter(x => x.id !== id);
+            if (type === 'p') {
+                db.p = db.p.filter(x => x && x.id !== id);
+            } else {
+                const p = db.p.find(x => x && x.id === activePId);
+                if (p && p.items) p.items = p.items.filter(x => x && x.id !== id);
             }
             database.ref('shop').set(db);
         }

@@ -20,7 +20,7 @@
             overflow-x: hidden; 
         }
 
-        /* شريط الإعلانات - تم تقليل السرعة بشكل ملحوظ لتصبح هادئة وفاخرة */
+        /* شريط الإعلانات الهادئ والسلس */
         .luxury-marquee-wrapper {
             background: #834d58;
             color: white;
@@ -33,7 +33,6 @@
         .luxury-marquee-track {
             display: flex;
             width: max-content;
-            /* تم زيادة الوقت إلى 45 ثانية لجعل الحركة بطيئة ومريحة للعين */
             animation: slideLuxuryBanner 45s linear infinite;
         }
         .marquee-group {
@@ -52,7 +51,7 @@
             100% { transform: translate3d(-33.333%, 0, 0); }
         }
 
-        /* تنسيق اللوجو الأصلي المثالي ZMZM GLOWS */
+        /* اللوجو الثابت ZMZM GLOWS */
         .logo-container { 
             display: flex; 
             justify-content: center; 
@@ -88,78 +87,65 @@
             color: var(--brand-primary); 
         }
 
-        /* العودة لستايل الكروت المربعة الأصلي كما هو بدون تغيير */
-        .collection-card {
-            position: relative;
-            border-radius: 28px;
-            overflow: hidden;
-            box-shadow: 0 10px 30px rgba(131, 77, 88, 0.03);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .collection-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(131, 77, 88, 0.1);
-        }
-        .collection-card img {
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-        .collection-card:hover img {
-            transform: scale(1.05);
-        }
-
-        .glass-overlay {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 20px;
-            padding: 18px 24px;
+        /* ستايل الدوائر الجديد - Story Highlights */
+        .story-item {
             display: flex;
-            justify-content: space-between;
+            flex-direction: column;
             align-items: center;
-            transition: all 0.35s ease;
-            z-index: 10;
+            flex-shrink: 0;
+            cursor: pointer;
+            width: 90px;
+            position: relative;
         }
-        .collection-card:hover .glass-overlay {
-            background: rgba(131, 77, 88, 0.95);
-            border-color: rgba(131, 77, 88, 0.1);
+        .story-circle-wrapper {
+            width: 76px;
+            height: 76px;
+            border-radius: 50%;
+            padding: 3px;
+            background: linear-gradient(45deg, #ebdcd8, var(--brand-primary), #c48b9f);
+            transition: transform 0.3s ease;
         }
-        .collection-title {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.6rem;
+        .story-item:hover .story-circle-wrapper, .story-item.active .story-circle-wrapper {
+            transform: scale(1.08);
+        }
+        .story-circle-wrapper.selected {
+            background: linear-gradient(45deg, #c48b9f, #834d58);
+            box-shadow: 0 0 12px rgba(131, 77, 88, 0.4);
+        }
+        .story-img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+            border: 2px solid white;
+        }
+        .story-name {
+            font-size: 11px;
+            font-weight: 600;
+            color: #4a4a4a;
+            margin-top: 8px;
+            text-align: center;
+            width: 100%;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+        }
+        .story-item.active .story-name {
             color: var(--brand-primary);
-            transition: color 0.35s ease;
-        }
-        .collection-card:hover .collection-title {
-            color: #ffffff;
-        }
-        .arrow-icon {
-            color: var(--brand-primary);
-            font-size: 1.3rem;
-            transition: all 0.35s ease;
-        }
-        .collection-card:hover .arrow-icon {
-            color: #ffffff;
-            transform: translateX(4px);
+            font-weight: 800;
         }
 
         .new-badge {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 12px;
+            left: 12px;
             background: #c48b9f;
             color: white;
-            padding: 5px 14px;
+            padding: 4px 10px;
             border-radius: 50px;
-            font-size: 9px;
+            font-size: 8px;
             font-weight: bold;
             z-index: 20;
-            letter-spacing: 1px;
             animation: pulse 2s infinite;
         }
         @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
@@ -197,12 +183,16 @@
         </div>
     </div>
 
+    <div class="w-full bg-white border-b py-6 overflow-x-auto scrollbar-hide">
+        <div id="partitions-grid" class="flex gap-6 px-6 mx-auto w-max"></div>
+    </div>
+
     <div id="main-ui">
-        <main class="container mx-auto px-4 py-16 max-w-7xl">
-            <h1 class="text-center text-5xl md:text-6xl font-bold text-[#834d58] mb-3">Our Collections</h1>
-            <p class="text-center text-gray-400 text-[11px] uppercase tracking-[5px] mb-16">Handmade Luxury Jewelry & Accessories</p>
+        <main class="container mx-auto px-4 py-10 max-w-7xl">
+            <h2 id="current-p-title" class="text-4xl fancy-font text-center text-[#834d58] mb-1">Our Products</h2>
+            <p id="current-p-desc" class="text-center text-gray-400 text-[10px] uppercase tracking-[4px] mb-12">Handmade Luxury Pieces</p>
             
-            <div id="partitions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            <div id="items-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 pb-20"></div>
         </main>
         
         <div class="py-12 px-4 max-w-4xl mx-auto w-full">
@@ -228,14 +218,6 @@
         </div>
 
         <footer class="py-10 text-center text-gray-400 text-[10px] tracking-widest uppercase">&copy; 2026 ZMZM GLOWS.</footer>
-    </div>
-
-    <div id="items-ui" class="hidden container mx-auto px-4 py-10">
-        <button onclick="goHome()" class="mb-8 text-[#834d58] font-bold text-xs uppercase tracking-widest flex items-center gap-1">
-            ← Back to Collections
-        </button>
-        <h2 id="current-p-title" class="text-4xl fancy-font text-center mb-10"></h2>
-        <div id="items-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 pb-20"></div>
     </div>
 
     <div id="admin-login-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-[99999]">
@@ -298,7 +280,7 @@
 
     <div id="admin-bar" class="fixed bottom-0 left-0 w-full bg-white border-t p-4 hidden justify-center gap-4 z-[999]">
         <button onclick="openForm('p')" class="bg-gradient-to-r from-[#834d58] to-[#c48b9f] text-white px-6 py-3 rounded-full text-xs font-bold">+ Collection</button>
-        <button id="add-i-btn" class="bg-gray-800 text-white px-6 py-3 rounded-full text-xs font-bold hidden">+ Item</button>
+        <button id="add-i-btn" class="bg-gray-800 text-white px-6 py-3 rounded-full text-xs font-bold">+ Item</button>
     </div>
 
     <script>
@@ -315,8 +297,12 @@
         database.ref('shop').on('value', (snapshot) => {
             const data = snapshot.val();
             if (data) db = data;
+            
+            // تعيين أول مجموعة كـ Active تلقائياً لو مفيش حاجة متقاة
+            if (db.p && db.p.length > 0 && !activePId) {
+                activePId = db.p[0].id;
+            }
             render();
-            if (activePId) openSubPage(activePId);
         });
 
         function isNew(createdAt) {
@@ -330,24 +316,83 @@
             const sorted = [...(db.p || [])].sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
             
             sorted.forEach(x => {
+                const isActive = x.id === activePId;
                 html += `
-                <div class="collection-card">
+                <div class="story-item ${isActive ? 'active' : ''}" onclick="selectCollection(${x.id})">
                     ${isAdmin ? `
-                    <div class="absolute top-4 right-4 z-50 flex gap-2">
-                        <button onclick="event.stopImmediatePropagation(); openForm('p', ${x.id})" class="bg-white/90 backdrop-blur w-9 h-9 rounded-xl shadow flex items-center justify-center text-xl hover:bg-white">✎</button>
-                        <button onclick="event.stopImmediatePropagation(); deleteData('p', ${x.id})" class="bg-white/90 backdrop-blur w-9 h-9 rounded-xl shadow flex items-center justify-center text-2xl text-red-500 hover:bg-white">×</button>
+                    <div class="absolute -top-1 -right-1 z-50 flex gap-1">
+                        <button onclick="event.stopImmediatePropagation(); openForm('p', ${x.id})" class="bg-white/90 w-5 h-5 rounded-full shadow flex items-center justify-center text-[10px]">✎</button>
+                        <button onclick="event.stopImmediatePropagation(); deleteData('p', ${x.id})" class="bg-white/90 w-5 h-5 rounded-full shadow flex items-center justify-center text-[11px] text-red-500">×</button>
                     </div>` : ''}
                     ${isNew(x.createdAt) ? '<div class="new-badge">NEW</div>' : ''}
-                    <div onclick="openSubPage(${x.id})" class="w-full h-full block relative cursor-pointer">
-                        <img src="${x.img || 'https://via.placeholder.com/600x700'}" alt="${x.n || ''}" class="w-full aspect-[4/5] object-cover">
-                        <div class="glass-overlay">
-                            <h2 class="collection-title">${x.n || ''}</h2>
-                            <span class="arrow-icon">→</span>
-                        </div>
+                    <div class="story-circle-wrapper ${isActive ? 'selected' : ''}">
+                        <img src="${x.img || 'https://via.placeholder.com/150'}" class="story-img">
                     </div>
+                    <div class="story-name">${x.n || 'Collection'}</div>
                 </div>`;
             });
             grid.innerHTML = html;
+
+            // رندر لمنتجات المجموعة النشطة حالياً تحت الـ Stories مباشرة
+            renderActiveItems();
+        }
+
+        function selectCollection(id) {
+            activePId = id;
+            render();
+        }
+
+        function renderActiveItems() {
+            const p = db.p ? db.p.find(x => x.id === activePId) : null;
+            const itemsGrid = document.getElementById('items-grid');
+            const titleEl = document.getElementById('current-p-title');
+            
+            document.getElementById('add-i-btn').style.display = isAdmin ? 'block' : 'none';
+            if (isAdmin && p) document.getElementById('add-i-btn').onclick = () => openForm('i');
+
+            if (!p) {
+                itemsGrid.innerHTML = '<p class="text-center text-gray-400 w-full col-span-full py-10">No collection selected or available.</p>';
+                titleEl.innerText = "Our Products";
+                return;
+            }
+
+            titleEl.innerText = p.n || "Collection";
+            let html = '';
+            
+            const items = p.items || [];
+            if (items.length === 0) {
+                itemsGrid.innerHTML = '<p class="text-center text-gray-400 w-full col-span-full py-12">No pieces inside this collection yet.</p>';
+                return;
+            }
+
+            [...items].sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0)).forEach(i => {
+                html += `
+                <div class="item-card bg-white rounded-3xl overflow-hidden relative shadow">
+                    ${i.soldOut ? '<div class="sold-out">SOLD OUT</div>' : ''}
+                    ${i.s ? '<div class="absolute top-4 left-4 bg-[#c48b9f] text-white text-[9px] px-3 py-1 rounded-full font-bold">SALE</div>' : ''}
+                    ${isNew(i.createdAt) ? '<div class="new-badge">NEW</div>' : ''}
+                    ${isAdmin ? `
+                    <div class="admin-controls absolute top-3 right-3 z-50 flex gap-2">
+                        <button onclick="event.stopImmediatePropagation(); openForm('i', ${i.id})" class="bg-white w-8 h-8 rounded-full shadow flex items-center justify-center text-lg">✎</button>
+                        <button onclick="event.stopImmediatePropagation(); deleteData('i', ${i.id})" class="bg-white w-8 h-8 rounded-full shadow flex items-center justify-center text-xl text-red-500">×</button>
+                    </div>` : ''}
+                    <img src="${i.img || 'https://via.placeholder.com/600'}" class="w-full aspect-square object-cover">
+                    <div class="p-4 text-center">
+                        ${i.n ? `<h3 class="font-bold text-sm mb-2">${i.n}</h3>` : ''}
+                        <div class="mb-4">
+                            ${i.s 
+                                ? `<span class="line-through text-gray-400 text-xs">${i.p} EGP</span> <span class="text-[#834d58] font-bold">${i.s} EGP</span>`
+                                : `<span class="text-[#834d58] font-bold">${i.p || '0'} EGP</span>`
+                            }
+                        </div>
+                        <button onclick="addToCart('${(i.n || 'Product').replace(/'/g, "\\'")}', ${i.s || i.p})" 
+                                class="w-full py-3 border-2 border-[#834d58] text-[#834d58] rounded-2xl font-bold hover:bg-[#834d58] hover:text-white transition ${i.soldOut ? 'opacity-50 pointer-events-none' : ''}">
+                            ${i.soldOut ? 'Sold Out' : 'Add to Cart'}
+                        </button>
+                    </div>
+                </div>`;
+            });
+            itemsGrid.innerHTML = html;
         }
 
         function saveData() {
@@ -366,7 +411,9 @@
                         if (item) item.n = name || item.n;
                         if (imgBase64) item.img = imgBase64;
                     } else {
-                        db.p.unshift({ id: Date.now(), n: name || "", img: imgBase64, items: [], createdAt: Date.now() });
+                        const newId = Date.now();
+                        db.p.unshift({ id: newId, n: name || "", img: imgBase64, items: [], createdAt: Date.now() });
+                        activePId = newId; 
                     }
                 } else {
                     let p = db.p.find(a => a.id === activePId);
@@ -433,7 +480,6 @@
                 closeAdminLogin();
                 document.getElementById('admin-bar').style.display = 'flex';
                 render();
-                if (activePId) openSubPage(activePId);
             } else {
                 alert("Wrong Admin Key!");
             }
@@ -462,50 +508,6 @@
                     }
                 }
             }
-        }
-
-        function openSubPage(id) {
-            activePId = id;
-            const p = db.p.find(x => x.id === id);
-            if (!p) return;
-
-            document.getElementById('current-p-title').innerText = p.n || "Collection";
-            document.getElementById('add-i-btn').style.display = isAdmin ? 'block' : 'none';
-            if (isAdmin) document.getElementById('add-i-btn').onclick = () => openForm('i');
-
-            let html = '';
-            (p.items || []).sort((a,b) => (b.createdAt || 0) - (a.createdAt || 0)).forEach(i => {
-                html += `
-                <div class="item-card bg-white rounded-3xl overflow-hidden relative shadow">
-                    ${i.soldOut ? '<div class="sold-out">SOLD OUT</div>' : ''}
-                    ${i.s ? '<div class="absolute top-4 left-4 bg-[#c48b9f] text-white text-[9px] px-3 py-1 rounded-full font-bold">SALE</div>' : ''}
-                    ${isNew(i.createdAt) ? '<div class="new-badge">NEW</div>' : ''}
-                    ${isAdmin ? `
-                    <div class="admin-controls absolute top-3 right-3 z-50 flex gap-2">
-                        <button onclick="event.stopImmediatePropagation(); openForm('i', ${i.id})" class="bg-white w-8 h-8 rounded-full shadow flex items-center justify-center text-lg">✎</button>
-                        <button onclick="event.stopImmediatePropagation(); deleteData('i', ${i.id})" class="bg-white w-8 h-8 rounded-full shadow flex items-center justify-center text-xl text-red-500">×</button>
-                    </div>` : ''}
-                    <img src="${i.img || 'https://via.placeholder.com/600'}" class="w-full aspect-square object-cover">
-                    <div class="p-4 text-center">
-                        ${i.n ? `<h3 class="font-bold text-sm mb-2">${i.n}</h3>` : ''}
-                        <div class="mb-4">
-                            ${i.s 
-                                ? `<span class="line-through text-gray-400 text-xs">${i.p} EGP</span> <span class="text-[#834d58] font-bold">${i.s} EGP</span>`
-                                : `<span class="text-[#834d58] font-bold">${i.p || '0'} EGP</span>`
-                            }
-                        </div>
-                        <button onclick="addToCart('${(i.n || 'Product').replace(/'/g, "\\'")}', ${i.s || i.p})" 
-                                class="w-full py-3 border-2 border-[#834d58] text-[#834d58] rounded-2xl font-bold hover:bg-[#834d58] hover:text-white transition ${i.soldOut ? 'opacity-50 pointer-events-none' : ''}">
-                            ${i.soldOut ? 'Sold Out' : 'Add to Cart'}
-                        </button>
-                    </div>
-                </div>`;
-            });
-            document.getElementById('items-grid').innerHTML = html;
-
-            document.getElementById('main-ui').classList.add('hidden');
-            document.getElementById('items-ui').classList.remove('hidden');
-            window.scrollTo(0, 0);
         }
 
         function addToCart(n, p) { cart.push({ n, p }); updateCartUI(); }
@@ -552,8 +554,10 @@
 
         function deleteData(type, id) {
             if (!isAdmin || !confirm("Delete this item?")) return;
-            if (type === 'p') db.p = db.p.filter(x => x.id !== id);
-            else {
+            if (type === 'p') {
+                db.p = db.p.filter(x => x.id !== id);
+                if (activePId === id) activePId = db.p.length > 0 ? db.p[0].id : null;
+            } else {
                 const p = db.p.find(x => x.id === activePId);
                 if (p) p.items = p.items.filter(x => x.id !== id);
             }
@@ -561,10 +565,8 @@
         }
 
         function goHome() {
-            activePId = null;
-            document.getElementById('items-ui').classList.add('hidden');
-            document.getElementById('main-ui').classList.remove('hidden');
-            document.getElementById('add-i-btn').style.display = 'none';
+            if (db.p && db.p.length > 0) activePId = db.p[0].id;
+            render();
             window.scrollTo(0, 0);
         }
 

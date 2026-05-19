@@ -20,23 +20,30 @@
             overflow-x: hidden; 
         }
 
+        /* تظبيط البانر المتحرك ليكون أوسع والكلام مرتاح */
         .top-banner {
             background: #834d58;
             color: white;
             overflow: hidden;
             white-space: nowrap;
-            padding: 18px 0;
+            padding: 24px 0; /* كبرنا الـ padding الرأسي عشان البانر ميبقاش ضيق */
+            display: flex;
+            align-items: center;
+        }
+        .banner-track {
+            display: flex;
+            gap: 80px; /* مسافة ثابتة وواسعة بين الجمل لمنع التداخل */
+            animation: slideBanner 30s linear infinite;
         }
         .banner-text {
-            display: inline-block;
-            padding-right: 420px;
-            animation: slideBanner 35s linear infinite;
-            font-size: 10.5px;
-            letter-spacing: 3px;
+            font-size: 13px; /* تكبير الخط حاجة بسيطة عشان يبقى واضح وقابل للقراءة */
+            letter-spacing: 4px; /* توسيع المسافات بين الحروف لتصميم أكثر فخامة */
+            font-weight: 600;
+            flex-shrink: 0;
         }
         @keyframes slideBanner {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            100% { transform: translateX(-33.33%); } /* حركة أنعم ومستمرة بناءً على التكرار الجديد */
         }
 
         .logo-container { 
@@ -74,13 +81,11 @@
             color: var(--brand-primary); 
         }
 
-        /* ستايل مخصص لأسماء البارتيشنز (مشبك ومايل) */
         .partition-title {
             font-family: 'Dancing Script', cursive;
             font-style: italic;
             font-weight: 700;
             display: inline-block;
-            /* عمل ميول إضافي أنيق يناسب ستايل اللوجو */
             transform: skewX(-10deg); 
             padding-left: 5px;
         }
@@ -113,10 +118,12 @@
         </div>
     </nav>
 
-    <div class="top-banner text-white text-center uppercase font-bold overflow-hidden">
-        <div class="banner-text">
-            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    <div class="top-banner uppercase font-bold">
+        <div class="banner-track">
+            <div class="banner-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
+            <div class="banner-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
+            <div class="banner-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
+            <div class="banner-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
         </div>
     </div>
 
@@ -353,7 +360,7 @@
                 if (activePId) openSubPage(activePId);
             } else {
                 alert("Wrong Admin Key!");
-            }
+            } verification
         }
 
         function openForm(type, id = null) {

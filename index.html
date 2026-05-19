@@ -20,6 +20,18 @@
             overflow-x: hidden; 
         }
 
+        /* متحرك Burgundy Banner */
+        .top-banner {
+            background: linear-gradient(90deg, #834d58, #9a5f6d, #c48b9f, #834d58);
+            background-size: 300% 100%;
+            animation: bannerMove 12s linear infinite;
+        }
+        @keyframes bannerMove {
+            0% { background-position: 0% 50%; }
+            100% { background-position: 300% 50%; }
+        }
+
+        /* Logo Animation */
         .logo-container { 
             display: flex; 
             justify-content: center; 
@@ -29,7 +41,7 @@
         .logo-container span {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 2.65rem;
+            font-size: 2.55rem;
             color: var(--brand-primary);
             display: inline-block;
             animation: fancyBounce 2.8s infinite ease-in-out;
@@ -38,7 +50,7 @@
         }
         @keyframes fancyBounce {
             0%, 100% { transform: skew(-12deg) translateY(0) rotate(0deg); }
-            50% { transform: skew(-12deg) translateY(-28px) rotate(6deg); }
+            50% { transform: skew(-12deg) translateY(-26px) rotate(5deg); }
         }
         .logo-container span:nth-child(1) { animation-delay: 0.05s; }
         .logo-container span:nth-child(2) { animation-delay: 0.18s; }
@@ -69,18 +81,14 @@
             z-index: 20;
             animation: pulse 2s infinite;
         }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.08); }
-        }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.08); } }
 
         .collection-card, .item-card {
-            transition: all 0.5s ease;
+            transition: all 0.4s ease;
         }
         .collection-card:hover, .item-card:hover {
-            transform: translateY(-12px);
-            box-shadow: 0 20px 40px -10px rgba(131, 77, 88, 0.35);
+            transform: translateY(-8px);
+            box-shadow: 0 15px 30px -8px rgba(131, 77, 88, 0.3);
         }
     </style>
 </head>
@@ -96,13 +104,15 @@
         </div>
     </nav>
 
+    <div class="top-banner text-white text-[9px] tracking-[3px] py-3 text-center uppercase font-bold">
+        Crafted for your glow • Exclusive Handmade Pieces
+    </div>
+
     <div id="main-ui">
-        <div class="bg-gradient-to-r from-[#834d58] via-[#9a5f6d] to-[#c48b9f] text-white text-[9px] tracking-[3px] py-3 text-center uppercase font-bold">Crafted for your glow • Exclusive Handmade Pieces</div>
-        
         <main class="container mx-auto px-4 py-10">
             <h1 class="text-center text-4xl md:text-5xl fancy-font mb-4">Collections</h1>
             <p class="text-center text-gray-500 text-[10px] uppercase tracking-[4px] mb-10">Handmade Jewelry & Accessories</p>
-            <div id="partitions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
+            <div id="partitions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-5 md:gap-6"></div>
         </main>
         
         <div class="py-16 px-4 text-center">
@@ -134,7 +144,21 @@
         <div id="items-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 pb-20"></div>
     </div>
 
-    <!-- Modals -->
+    <!-- Admin Login Modal -->
+    <div id="admin-login-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-[99999]">
+        <div class="bg-white rounded-3xl p-8 w-full max-w-sm mx-4 shadow-2xl">
+            <h2 class="text-2xl font-bold text-center mb-6 text-[#834d58]">Admin Access</h2>
+            <input type="password" id="admin-key-input" placeholder="Enter Admin Key" 
+                   class="w-full border border-gray-300 rounded-2xl px-5 py-4 text-center focus:outline-none focus:border-[#834d58] mb-6 text-lg">
+            <button onclick="verifyAdminKey()" 
+                    class="w-full bg-gradient-to-r from-[#834d58] to-[#c48b9f] text-white py-4 rounded-2xl font-bold text-lg mb-3">
+                Login
+            </button>
+            <button onclick="closeAdminLogin()" class="w-full text-gray-500 py-3">Cancel</button>
+        </div>
+    </div>
+
+    <!-- Cart Modal -->
     <div id="cart-modal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[9999] p-4">
         <div class="max-w-md w-full bg-white rounded-3xl p-8">
             <h2 class="text-4xl fancy-font text-[#834d58] mb-8 text-center">Your Cart</h2>
@@ -150,6 +174,7 @@
         </div>
     </div>
 
+    <!-- Admin Panel -->
     <div id="admin-modal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[9999] p-4">
         <div class="max-w-md w-full bg-white rounded-3xl p-8">
             <h2 class="text-2xl font-bold text-[#834d58] mb-6">Admin Panel</h2>
@@ -178,7 +203,7 @@
         🛒 <span id="cart-count-badge" class="font-bold">0</span>
     </div>
     
-    <div onclick="ctrl_auth()" class="fixed bottom-6 right-6 w-12 h-12 bg-gradient-to-r from-[#834d58] to-[#c48b9f] text-white rounded-full flex items-center justify-center text-2xl cursor-pointer shadow-xl">⚙️</div>
+    <div onclick="showAdminLogin()" class="fixed bottom-6 right-6 w-12 h-12 bg-gradient-to-r from-[#834d58] to-[#c48b9f] text-white rounded-full flex items-center justify-center text-2xl cursor-pointer shadow-xl">⚙️</div>
 
     <div id="admin-bar" class="fixed bottom-0 left-0 w-full bg-white border-t p-4 hidden justify-center gap-4 z-[999]">
         <button onclick="openForm('p')" class="bg-gradient-to-r from-[#834d58] to-[#c48b9f] text-white px-6 py-3 rounded-full text-xs font-bold">+ Collection</button>
@@ -205,17 +230,14 @@
 
         function isNew(createdAt) {
             if (!createdAt) return false;
-            const daysDiff = (Date.now() - createdAt) / (1000 * 60 * 60 * 24);
-            return daysDiff <= 3;
+            return (Date.now() - createdAt) / (1000 * 60 * 60 * 24) <= 3;
         }
 
         function render() {
             const grid = document.getElementById('partitions-grid');
             let html = '';
-            
-            // Sort by createdAt descending (newest first)
             const sorted = [...(db.p || [])].sort((a, b) => (b.createdAt || 0) - (a.createdAt || 0));
-
+            
             sorted.forEach(x => {
                 html += `
                 <div class="collection-card rounded-3xl overflow-hidden shadow-md border border-transparent bg-white relative">
@@ -226,7 +248,7 @@
                     </div>` : ''}
                     ${isNew(x.createdAt) ? '<div class="new-badge">NEW</div>' : ''}
                     <div onclick="openSubPage(${x.id})">
-                        <img src="${x.img || 'https://via.placeholder.com/600x700'}" class="w-full aspect-[4/4.5] object-cover">
+                        <img src="${x.img || 'https://via.placeholder.com/600x700'}" class="w-full aspect-[4/4.2] object-cover">
                         <div class="p-5">
                             <h2 class="text-xl md:text-2xl fancy-font text-[#834d58]">${x.n || ''}</h2>
                         </div>
@@ -246,22 +268,13 @@
 
             const process = (imgBase64 = null) => {
                 if (!db.p) db.p = [];
-
                 if (mode.type === 'p') {
                     if (mode.id) {
                         let item = db.p.find(a => a.id === mode.id);
-                        if (item) {
-                            item.n = name || item.n;
-                            if (imgBase64) item.img = imgBase64;
-                        }
+                        if (item) item.n = name || item.n;
+                        if (imgBase64) item.img = imgBase64;
                     } else {
-                        db.p.unshift({ 
-                            id: Date.now(), 
-                            n: name || "", 
-                            img: imgBase64, 
-                            items: [],
-                            createdAt: Date.now()
-                        });
+                        db.p.unshift({ id: Date.now(), n: name || "", img: imgBase64, items: [], createdAt: Date.now() });
                     }
                 } else {
                     let p = db.p.find(a => a.id === activePId);
@@ -288,7 +301,6 @@
                         });
                     }
                 }
-
                 database.ref('shop').set(db).then(() => {
                     document.getElementById('save-loader').classList.add('hidden');
                     document.getElementById('f_file').value = '';
@@ -313,7 +325,28 @@
             } else process();
         }
 
-        // باقي الدوال (مختصرة)
+        function showAdminLogin() {
+            document.getElementById('admin-login-modal').classList.remove('hidden');
+            document.getElementById('admin-key-input').focus();
+        }
+
+        function closeAdminLogin() {
+            document.getElementById('admin-login-modal').classList.add('hidden');
+            document.getElementById('admin-key-input').value = '';
+        }
+
+        function verifyAdminKey() {
+            if (document.getElementById('admin-key-input').value.trim() === "zmzm147") {
+                isAdmin = true;
+                closeAdminLogin();
+                document.getElementById('admin-bar').style.display = 'flex';
+                render();
+                if (activePId) openSubPage(activePId);
+            } else {
+                alert("Wrong Admin Key!");
+            }
+        }
+
         function openForm(type, id = null) {
             if (!isAdmin) return;
             mode = { type, id };
@@ -327,8 +360,7 @@
             if (document.getElementById('f_soldout')) document.getElementById('f_soldout').checked = false;
 
             if (id) {
-                let item = type === 'p' ? db.p.find(x => x.id === id) : 
-                          db.p.find(x => x.id === activePId)?.items?.find(x => x.id === id);
+                let item = type === 'p' ? db.p.find(x => x.id === id) : db.p.find(x => x.id === activePId)?.items?.find(x => x.id === id);
                 if (item) {
                     document.getElementById('f_name').value = item.n || '';
                     if (type === 'i') {
@@ -424,15 +456,6 @@
             });
             msg += `\nTotal: ${total} EGP`;
             window.open(`https://wa.me/201140492104?text=${encodeURIComponent(msg)}`);
-        }
-
-        function ctrl_auth() {
-            if (prompt("Enter Admin Key:") === "zmzm147") {
-                isAdmin = true;
-                document.getElementById('admin-bar').style.display = 'flex';
-                render();
-                if (activePId) openSubPage(activePId);
-            }
         }
 
         function deleteData(type, id) {

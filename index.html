@@ -20,7 +20,7 @@
             overflow-x: hidden; 
         }
 
-        /* Banner */
+        /* Banner متحرك ناعم */
         .top-banner {
             background: #834d58;
             color: white;
@@ -29,8 +29,8 @@
         }
         .banner-text {
             display: inline-block;
-            padding-right: 100px;
-            animation: slideBanner 22s linear infinite;
+            padding-right: 150px;
+            animation: slideBanner 28s linear infinite;
         }
         @keyframes slideBanner {
             0% { transform: translateX(0); }
@@ -56,7 +56,7 @@
         }
         @keyframes fancyBounce {
             0%, 100% { transform: skew(-12deg) translateY(0) rotate(0deg); }
-            50% { transform: skew(-12deg) translateY(-26px) rotate(5deg); }
+            50% { transform: skew(-12deg) translateY(-28px) rotate(6deg); }
         }
         .logo-container span:nth-child(1) { animation-delay: 0.05s; }
         .logo-container span:nth-child(2) { animation-delay: 0.18s; }
@@ -102,8 +102,7 @@
         </div>
     </nav>
 
-    <!-- Banner متحرك -->
-    <div class="top-banner text-white text-[9.5px] tracking-[2.5px] py-3.5 text-center uppercase font-bold overflow-hidden">
+    <div class="top-banner text-white text-[9.5px] tracking-[3px] py-3.5 text-center uppercase font-bold overflow-hidden">
         <div class="banner-text">
             CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
             CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
@@ -138,7 +137,6 @@
         <footer class="py-10 text-center text-gray-400 text-[10px] tracking-widest uppercase">&copy; 2026 ZMZM GLOWS.</footer>
     </div>
 
-    <!-- Items UI, Modals, and Script (same as before) -->
     <div id="items-ui" class="hidden container mx-auto px-4 py-10">
         <button onclick="goHome()" class="mb-8 text-[#834d58] font-bold text-xs uppercase tracking-widest flex items-center gap-1">
             ← Back to Collections

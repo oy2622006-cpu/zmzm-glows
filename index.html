@@ -20,7 +20,7 @@
             overflow-x: hidden; 
         }
 
-        /* حل نهائي لملء الفراغ وجعل الحركة سلسة لانهائية */
+        /* شريط الإعلانات السلس اللانهائي بدون أي وقوف أو فراغات */
         .luxury-marquee-wrapper {
             background: #834d58;
             color: white;
@@ -46,13 +46,12 @@
             padding: 0 40px;
             display: inline-block;
         }
-        
         @keyframes slideLuxuryBanner {
             0% { transform: translate3d(0, 0, 0); }
             100% { transform: translate3d(-33.333%, 0, 0); }
         }
 
-        /* تعديل الاسم الأصلي الحرفي الصريح */
+        /* تنسيق اللوجو الأصلي ZMZM GLOWS */
         .logo-container { 
             display: flex; 
             justify-content: center; 
@@ -88,80 +87,97 @@
             color: var(--brand-primary); 
         }
 
-        .collection-card {
+        /* الاستايل الجديد: الشرايط الطولية العريضة الفخمة */
+        .luxury-row-banner {
             position: relative;
-            border-radius: 28px;
+            width: 100%;
+            height: 320px;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(131, 77, 88, 0.03);
-            transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            border-radius: 24px;
+            margin-bottom: 32px;
+            box-shadow: 0 15px 35px rgba(131, 77, 88, 0.04);
+            cursor: pointer;
+            transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .collection-card:hover {
-            transform: translateY(-6px);
-            box-shadow: 0 20px 40px rgba(131, 77, 88, 0.1);
+        @media (min-width: 768px) {
+            .luxury-row-banner { height: 450px; }
         }
-        .collection-card img {
-            transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+        .luxury-row-banner:hover {
+            transform: scale(0.99);
         }
-        .collection-card:hover img {
-            transform: scale(1.05);
+        .luxury-row-banner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            object-position: center;
+            transition: transform 1.2s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .luxury-row-banner:hover img {
+            transform: scale(1.04);
+        }
+        
+        /* تداخل زجاجي فخم يمتد فوق الشرايط */
+        .banner-glass-tint {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(131, 77, 88, 0.75) 10%, rgba(0,0,0,0.1) 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 32px;
+            transition: all 0.4s ease;
+        }
+        .luxury-row-banner:hover .banner-glass-tint {
+            background: linear-gradient(to top, rgba(131, 77, 88, 0.9) 20%, rgba(131, 77, 88, 0.2) 100%);
         }
 
-        .glass-overlay {
-            position: absolute;
-            bottom: 20px;
-            left: 20px;
-            right: 20px;
-            background: rgba(255, 255, 255, 0.85);
-            backdrop-filter: blur(12px);
-            -webkit-backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.4);
-            border-radius: 20px;
-            padding: 18px 24px;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            transition: all 0.35s ease;
-            z-index: 10;
-        }
-        .collection-card:hover .glass-overlay {
-            background: rgba(131, 77, 88, 0.95);
-            border-color: rgba(131, 77, 88, 0.1);
-        }
-        .collection-title {
+        .banner-title {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 1.6rem;
-            color: var(--brand-primary);
-            transition: color 0.35s ease;
+            font-size: 2.25rem;
+            color: white;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            transform: translateY(5px);
+            transition: transform 0.4s ease;
         }
-        .collection-card:hover .collection-title {
-            color: #ffffff;
+        .luxury-row-banner:hover .banner-title {
+            transform: translateY(0px);
         }
-        .arrow-icon {
-            color: var(--brand-primary);
-            font-size: 1.3rem;
-            transition: all 0.35s ease;
+
+        .banner-action-btn {
+            color: white;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            font-weight: bold;
+            margin-top: 8px;
+            opacity: 0.85;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.4s ease;
         }
-        .collection-card:hover .arrow-icon {
-            color: #ffffff;
-            transform: translateX(4px);
+        .luxury-row-banner:hover .banner-action-btn {
+            opacity: 1;
+            letter-spacing: 4px;
         }
 
         .new-badge {
             position: absolute;
-            top: 20px;
-            left: 20px;
+            top: 24px;
+            left: 24px;
             background: #c48b9f;
             color: white;
-            padding: 5px 14px;
+            padding: 6px 16px;
             border-radius: 50px;
             font-size: 9px;
             font-weight: bold;
             z-index: 20;
-            letter-spacing: 1px;
+            letter-spacing: 2px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
             animation: pulse 2s infinite;
         }
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.06); } }
+        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
     </style>
 </head>
 <body>
@@ -197,10 +213,11 @@
     </div>
 
     <div id="main-ui">
-        <main class="container mx-auto px-4 py-16 max-w-7xl">
+        <main class="container mx-auto px-4 py-16 max-w-5xl">
             <h1 class="text-center text-5xl md:text-6xl font-bold text-[#834d58] mb-3">Our Collections</h1>
             <p class="text-center text-gray-400 text-[11px] uppercase tracking-[5px] mb-16">Handmade Luxury Jewelry & Accessories</p>
-            <div id="partitions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"></div>
+            
+            <div id="partitions-grid" class="flex flex-col w-full"></div>
         </main>
         
         <div class="py-12 px-4 max-w-4xl mx-auto w-full">
@@ -329,18 +346,18 @@
             
             sorted.forEach(x => {
                 html += `
-                <div class="collection-card">
+                <div class="luxury-row-banner">
                     ${isAdmin ? `
                     <div class="absolute top-4 right-4 z-50 flex gap-2">
                         <button onclick="event.stopImmediatePropagation(); openForm('p', ${x.id})" class="bg-white/90 backdrop-blur w-9 h-9 rounded-xl shadow flex items-center justify-center text-xl hover:bg-white">✎</button>
                         <button onclick="event.stopImmediatePropagation(); deleteData('p', ${x.id})" class="bg-white/90 backdrop-blur w-9 h-9 rounded-xl shadow flex items-center justify-center text-2xl text-red-500 hover:bg-white">×</button>
                     </div>` : ''}
-                    ${isNew(x.createdAt) ? '<div class="new-badge">NEW</div>' : ''}
-                    <div onclick="openSubPage(${x.id})" class="w-full h-full block relative cursor-pointer">
-                        <img src="${x.img || 'https://via.placeholder.com/600x700'}" alt="${x.n || ''}" class="w-full aspect-[4/5] object-cover">
-                        <div class="glass-overlay">
-                            <h2 class="collection-title">${x.n || ''}</h2>
-                            <span class="arrow-icon">→</span>
+                    ${isNew(x.createdAt) ? '<div class="new-badge">NEW COLLECTION</div>' : ''}
+                    <div onclick="openSubPage(${x.id})" class="w-full h-full block relative">
+                        <img src="${x.img || 'https://via.placeholder.com/1200x500'}" alt="${x.n || ''}">
+                        <div class="banner-glass-tint">
+                            <h2 class="banner-title">${x.n || ''}</h2>
+                            <div class="banner-action-btn">Discover Collection →</div>
                         </div>
                     </div>
                 </div>`;
@@ -404,10 +421,10 @@
                     const img = new Image();
                     img.onload = () => {
                         const canvas = document.createElement('canvas');
-                        canvas.width = 600;
-                        canvas.height = Math.round((img.height / img.width) * 600);
+                        canvas.width = 1000;
+                        canvas.height = Math.round((img.height / img.width) * 1000);
                         canvas.getContext('2d').drawImage(img, 0, 0, canvas.width, canvas.height);
-                        process(canvas.toDataURL('image/jpeg', 0.75));
+                        process(canvas.toDataURL('image/jpeg', 0.8));
                     };
                     img.src = e.target.result;
                 };

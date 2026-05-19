@@ -20,36 +20,44 @@
             overflow-x: hidden; 
         }
 
+        /* حل نهائي وقاطع لمشكلة اهتزاز أو وقوف شريط الإعلانات */
         .luxury-marquee-wrapper {
             background: #834d58;
             color: white;
             overflow: hidden;
             white-space: nowrap;
-            padding: 18px 0 !important;
-            display: flex;
+            padding: 16px 0 !important;
             width: 100%;
+            display: flex;
         }
         .luxury-marquee-track {
             display: flex;
             width: max-content;
-            animation: slideLuxuryBanner 25s linear infinite;
+            animation: slideLuxuryBanner 20s linear infinite;
+        }
+        .marquee-group {
+            display: flex;
+            flex-shrink: 0;
         }
         .luxury-marquee-text {
             font-size: 13px !important; 
             letter-spacing: 4px !important;
             font-weight: 600;
-            padding-right: 60px; /* مسافة ثابتة ومدروسة بين الجمل */
+            padding: 0 30px;
             display: inline-block;
         }
+        
+        /* تأثير الحركة السلسة اللانهائية بالاعتماد على مصفوفة النقل ثلاثية الأبعاد */
         @keyframes slideLuxuryBanner {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } 
+            0% { transform: translate3d(0, 0, 0); }
+            100% { transform: translate3d(-50%, 0, 0); }
         }
 
+        /* تنسيق اللوجو الأصلي المثالي */
         .logo-container { 
             display: flex; 
             justify-content: center; 
-            gap: 4px; 
+            gap: 5px; 
             cursor: pointer; 
         }
         .logo-container span {
@@ -66,15 +74,14 @@
             50% { transform: skew(-14deg) translateY(-28px) rotate(6deg); }
         }
         .logo-container span:nth-child(1) { animation-delay: 0.05s; }
-        .logo-container span:nth-child(2) { animation-delay: 0.18s; }
-        .logo-container span:nth-child(3) { animation-delay: 0.31s; }
-        .logo-container span:nth-child(4) { animation-delay: 0.44s; }
-        .logo-container span:nth-child(5) { animation-delay: 0.57s; }
-        .logo-container span:nth-child(6) { animation-delay: 0.70s; }
-        .logo-container span:nth-child(7) { animation-delay: 0.83s; }
-        .logo-container span:nth-child(8) { animation-delay: 0.96s; }
-        .logo-container span:nth-child(9) { animation-delay: 1.09s; }
-        .logo-container span:nth-child(10){ animation-delay: 1.22s; }
+        .logo-container span:nth-child(2) { animation-delay: 0.15s; }
+        .logo-container span:nth-child(3) { animation-delay: 0.25s; }
+        .logo-container span:nth-child(4) { animation-delay: 0.35s; }
+        .logo-container span:nth-child(5) { animation-delay: 0.45s; }
+        .logo-container span:nth-child(6) { animation-delay: 0.55s; }
+        .logo-container span:nth-child(7) { animation-delay: 0.65s; }
+        .logo-container span:nth-child(8) { animation-delay: 0.75s; }
+        .logo-container span:nth-child(9) { animation-delay: 0.85s; }
 
         .fancy-font { 
             font-family: 'Dancing Script', cursive; 
@@ -165,20 +172,22 @@
 
     <nav class="p-5 text-center border-b sticky top-0 bg-white/95 backdrop-blur-md z-50">
         <div class="logo-container" onclick="goHome()">
-            <span>Z</span><span>M</span><span>Check</span><span>M</span><span>&nbsp;</span><span>G</span><span>L</span><span>O</span><span>W</span><span>S</span>
+            <span>Z</span><span>M</span><span>Z</span><span>M</span><span>&nbsp;</span><span>G</span><span>L</span><span>O</span><span>W</span><span>S</span>
         </div>
     </nav>
 
     <div class="luxury-marquee-wrapper uppercase font-bold">
         <div class="luxury-marquee-track">
-            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
-            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
-            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
-            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
-            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
-            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
-            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
-            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+            <div class="marquee-group">
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+            </div>
+            <div class="marquee-group">
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+                <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+            </div>
         </div>
     </div>
 

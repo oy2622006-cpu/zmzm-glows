@@ -74,6 +74,17 @@
             color: var(--brand-primary); 
         }
 
+        /* ستايل مخصص لأسماء البارتيشنز (مشبك ومايل) */
+        .partition-title {
+            font-family: 'Dancing Script', cursive;
+            font-style: italic;
+            font-weight: 700;
+            display: inline-block;
+            /* عمل ميول إضافي أنيق يناسب ستايل اللوجو */
+            transform: skewX(-10deg); 
+            padding-left: 5px;
+        }
+
         .new-badge {
             position: absolute;
             top: 12px;
@@ -238,7 +249,7 @@
             
             sorted.forEach(x => {
                 html += `
-                <div class="collection-card rounded-3xl overflow-hidden shadow-md border border-transparent bg-white relative">
+                <div class="collection-card rounded-3xl overflow-hidden shadow-md border border-transparent bg-white relative transition-all duration-300 hover:shadow-xl cursor-pointer">
                     ${isAdmin ? `
                     <div class="absolute top-4 right-4 z-50 flex gap-2">
                         <button onclick="event.stopImmediatePropagation(); openForm('p', ${x.id})" class="bg-white w-9 h-9 rounded-2xl shadow flex items-center justify-center text-xl">✎</button>
@@ -248,7 +259,7 @@
                     <div onclick="openSubPage(${x.id})">
                         <img src="${x.img || 'https://via.placeholder.com/600x700'}" class="w-full aspect-[4/4.5] object-cover">
                         <div class="p-6">
-                            <h2 class="text-2xl fancy-font text-[#834d58]">${x.n || ''}</h2>
+                            <h2 class="text-4xl partition-title text-[#834d58] drop-shadow-sm">${x.n || ''}</h2>
                         </div>
                     </div>
                 </div>`;
@@ -256,7 +267,6 @@
             grid.innerHTML = html;
         }
 
-        // باقي الـ script بدون تغيير
         function saveData() {
             document.getElementById('save-loader').classList.remove('hidden');
             const name = document.getElementById('f_name').value.trim();
@@ -434,7 +444,7 @@
                     <button onclick="removeFromCart(${idx})" class="text-red-500 font-bold">Remove</button>
                 </div>`;
             });
-            document.getElementById('cart-items-list').innerHTML = html;
+            cart.length === 0 ? closeCart() : document.getElementById('cart-items-list').innerHTML = html;
             document.getElementById('cart-total').innerText = total + " EGP";
             document.getElementById('cart-modal').classList.remove('hidden');
         }

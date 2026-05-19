@@ -25,24 +25,25 @@
             color: white;
             overflow: hidden;
             white-space: nowrap;
-            padding: 24px 0 !important;
+            padding: 18px 0 !important;
             display: flex;
-            align-items: center;
+            width: 100%;
         }
         .luxury-marquee-track {
             display: flex;
-            gap: 90px !important;
-            animation: slideLuxuryBanner 30s linear infinite;
+            width: max-content;
+            animation: slideLuxuryBanner 25s linear infinite;
         }
         .luxury-marquee-text {
             font-size: 13px !important; 
             letter-spacing: 4px !important;
             font-weight: 600;
-            flex-shrink: 0;
+            padding-right: 60px; /* مسافة ثابتة ومدروسة بين الجمل */
+            display: inline-block;
         }
         @keyframes slideLuxuryBanner {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-33.33%); } 
+            100% { transform: translateX(-50%); } 
         }
 
         .logo-container { 
@@ -170,10 +171,14 @@
 
     <div class="luxury-marquee-wrapper uppercase font-bold">
         <div class="luxury-marquee-track">
-            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
-            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
-            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
-            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES</div>
+            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
+            <div class="luxury-marquee-text">CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES •</div>
         </div>
     </div>
 

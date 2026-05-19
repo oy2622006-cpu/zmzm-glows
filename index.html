@@ -20,65 +20,33 @@
             overflow-x: hidden; 
         }
 
+        /* Animated Sliding Banner */
         .top-banner {
-            background: linear-gradient(90deg, #834d58, #9a5f6d, #c48b9f);
-            background-size: 300% 100%;
-            animation: bannerMove 12s linear infinite;
-        }
-        @keyframes bannerMove {
-            0% { background-position: 0% 50%; }
-            100% { background-position: 300% 50%; }
-        }
-
-        .logo-container { 
-            display: flex; 
-            justify-content: center; 
-            gap: 3px; 
-            cursor: pointer; 
-        }
-        .logo-container span {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 2.55rem;
-            color: var(--brand-primary);
-            display: inline-block;
-            animation: fancyBounce 2.8s infinite ease-in-out;
-            text-shadow: 0 4px 12px rgba(131, 77, 88, 0.25);
-            transform: skew(-12deg);
-        }
-        @keyframes fancyBounce {
-            0%, 100% { transform: skew(-12deg) translateY(0) rotate(0deg); }
-            50% { transform: skew(-12deg) translateY(-26px) rotate(5deg); }
-        }
-        .logo-container span:nth-child(1) { animation-delay: 0.05s; }
-        .logo-container span:nth-child(2) { animation-delay: 0.18s; }
-        .logo-container span:nth-child(3) { animation-delay: 0.31s; }
-        .logo-container span:nth-child(4) { animation-delay: 0.44s; }
-        .logo-container span:nth-child(5) { animation-delay: 0.57s; }
-        .logo-container span:nth-child(6) { animation-delay: 0.70s; }
-        .logo-container span:nth-child(7) { animation-delay: 0.83s; }
-        .logo-container span:nth-child(8) { animation-delay: 0.96s; }
-        .logo-container span:nth-child(9) { animation-delay: 1.09s; }
-        .logo-container span:nth-child(10){ animation-delay: 1.22s; }
-
-        .fancy-font { 
-            font-family: 'Dancing Script', cursive; 
-            color: var(--brand-primary); 
-        }
-
-        /* شكل تقليدي فخم للبارتيشنز */
-        .collection-card {
-            border-radius: 20px;
+            background: #834d58;
             overflow: hidden;
-            border: 1px solid #e5d5d8;
+            white-space: nowrap;
+        }
+        .banner-text {
+            display: inline-block;
+            padding-right: 80px;
+            animation: slideBanner 18s linear infinite;
+        }
+        @keyframes slideBanner {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(-50%); }
+        }
+
+        /* Elegant Collection Cards */
+        .collection-card {
+            border-radius: 24px;
+            overflow: hidden;
             background: white;
+            box-shadow: 0 10px 25px rgba(131, 77, 88, 0.1);
             transition: all 0.5s ease;
-            box-shadow: 0 10px 20px rgba(131, 77, 88, 0.08);
         }
         .collection-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 20px 35px rgba(131, 77, 88, 0.18);
-            border-color: var(--brand-primary);
+            transform: translateY(-12px);
+            box-shadow: 0 20px 40px rgba(131, 77, 88, 0.18);
         }
 
         .new-badge {
@@ -109,17 +77,18 @@
         </div>
     </nav>
 
-    <div class="top-banner text-white text-[9px] tracking-[3px] py-3 text-center uppercase font-bold overflow-hidden">
+    <!-- Sliding Banner -->
+    <div class="top-banner text-white text-[10px] tracking-[2px] py-3.5 text-center uppercase font-bold overflow-hidden">
         <div class="banner-text">
-            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;
-            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;
+            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
     </div>
 
     <div id="main-ui">
-        <main class="container mx-auto px-4 py-10">
-            <h1 class="text-center text-4xl md:text-5xl fancy-font mb-4">Collections</h1>
-            <p class="text-center text-gray-500 text-[10px] uppercase tracking-[4px] mb-10">Handmade Jewelry & Accessories</p>
+        <main class="container mx-auto px-4 py-12">
+            <h1 class="text-center text-5xl fancy-font mb-4">Collections</h1>
+            <p class="text-center text-gray-500 text-[10px] uppercase tracking-[4px] mb-12">Handmade Jewelry & Accessories</p>
             <div id="partitions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </main>
         
@@ -144,6 +113,7 @@
         <footer class="py-10 text-center text-gray-400 text-[10px] tracking-widest uppercase">&copy; 2026 ZMZM GLOWS.</footer>
     </div>
 
+    <!-- Items Page -->
     <div id="items-ui" class="hidden container mx-auto px-4 py-10">
         <button onclick="goHome()" class="mb-8 text-[#834d58] font-bold text-xs uppercase tracking-widest flex items-center gap-1">
             ← Back to Collections
@@ -152,7 +122,7 @@
         <div id="items-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 pb-20"></div>
     </div>
 
-    <!-- Modals -->
+    <!-- Admin Login -->
     <div id="admin-login-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-[99999]">
         <div class="bg-white rounded-3xl p-8 w-full max-w-sm mx-4 shadow-2xl">
             <h2 class="text-2xl font-bold text-center mb-6 text-[#834d58]">Admin Access</h2>
@@ -166,6 +136,7 @@
         </div>
     </div>
 
+    <!-- Cart & Admin Modals -->
     <div id="cart-modal" class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-[9999] p-4">
         <div class="max-w-md w-full bg-white rounded-3xl p-8">
             <h2 class="text-4xl fancy-font text-[#834d58] mb-8 text-center">Your Cart</h2>
@@ -246,7 +217,7 @@
             
             sorted.forEach(x => {
                 html += `
-                <div class="collection-card rounded-3xl overflow-hidden shadow-md border border-[#e5d5d8] bg-white relative">
+                <div class="collection-card relative">
                     ${isAdmin ? `
                     <div class="absolute top-4 right-4 z-50 flex gap-2">
                         <button onclick="event.stopImmediatePropagation(); openForm('p', ${x.id})" class="bg-white w-9 h-9 rounded-2xl shadow flex items-center justify-center text-xl">✎</button>
@@ -254,8 +225,8 @@
                     </div>` : ''}
                     ${isNew(x.createdAt) ? '<div class="new-badge">NEW</div>' : ''}
                     <div onclick="openSubPage(${x.id})">
-                        <img src="${x.img || 'https://via.placeholder.com/600x700'}" class="w-full aspect-[4/4.5] object-cover">
-                        <div class="p-6">
+                        <img src="${x.img || 'https://via.placeholder.com/600x700'}" class="w-full aspect-[4/4] object-cover">
+                        <div class="p-6 text-center border-t">
                             <h2 class="text-2xl fancy-font text-[#834d58]">${x.n || ''}</h2>
                         </div>
                     </div>

@@ -20,30 +20,29 @@
             overflow-x: hidden; 
         }
 
-        /* تظبيط البانر المتحرك ليكون أوسع والكلام مرتاح */
         .top-banner {
             background: #834d58;
             color: white;
             overflow: hidden;
             white-space: nowrap;
-            padding: 24px 0; /* كبرنا الـ padding الرأسي عشان البانر ميبقاش ضيق */
+            padding: 24px 0; 
             display: flex;
             align-items: center;
         }
         .banner-track {
             display: flex;
-            gap: 80px; /* مسافة ثابتة وواسعة بين الجمل لمنع التداخل */
+            gap: 80px; 
             animation: slideBanner 30s linear infinite;
         }
         .banner-text {
-            font-size: 13px; /* تكبير الخط حاجة بسيطة عشان يبقى واضح وقابل للقراءة */
-            letter-spacing: 4px; /* توسيع المسافات بين الحروف لتصميم أكثر فخامة */
+            font-size: 13px; 
+            letter-spacing: 4px; 
             font-weight: 600;
             flex-shrink: 0;
         }
         @keyframes slideBanner {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-33.33%); } /* حركة أنعم ومستمرة بناءً على التكرار الجديد */
+            100% { transform: translateX(-33.33%); } 
         }
 
         .logo-container { 
@@ -114,7 +113,7 @@
 
     <nav class="p-5 text-center border-b sticky top-0 bg-white/95 backdrop-blur-md z-50">
         <div class="logo-container" onclick="goHome()">
-            <span>Z</span><span>M</span><span>Z</span><span>M</span><span>&nbsp;</span><span>G</span><span>L</span><span>O</span><span>W</span><span>S</span>
+            <span>Z</span><span>M</span><span>Check</span><span>Z</span><span>M</span><span>&nbsp;</span><span>G</span><span>L</span><span>O</span><span>W</span><span>S</span>
         </div>
     </nav>
 
@@ -134,24 +133,27 @@
             <div id="partitions-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6"></div>
         </main>
         
-        <div class="py-16 px-4 text-center">
-            <h2 class="text-4xl fancy-font mb-10 text-[#834d58]">Connect With Us</h2>
-            <div class="max-w-lg mx-auto grid grid-cols-1 sm:grid-cols-3 gap-5">
-                <a href="https://www.instagram.com/zmzm_glowsss" target="_blank" class="group bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl border border-[#f0e6e8]">
-                    <div class="text-4xl mb-4 transition-transform group-hover:scale-110">📷</div>
-                    <p class="font-bold text-[#834d58]">Instagram</p>
-                </a>
-                <a href="https://wa.me/201140492104" target="_blank" class="group bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl border border-[#f0e6e8]">
-                    <div class="text-4xl mb-4 transition-transform group-hover:scale-110">💬</div>
-                    <p class="font-bold text-[#834d58]">WhatsApp</p>
-                </a>
-                <a href="https://www.tiktok.com/@zmzmglowwss" target="_blank" class="group bg-white rounded-3xl p-8 shadow-sm hover:shadow-xl border border-[#f0e6e8]">
-                    <div class="text-4xl mb-4 transition-transform group-hover:scale-110">🎵</div>
-                    <p class="font-bold text-[#834d58]">TikTok</p>
-                </a>
+        <div class="py-12 px-4 max-w-4xl mx-auto">
+            <div class="bg-white rounded-[32px] p-8 md:p-12 shadow-[0_10px_30px_rgba(131,77,88,0.06)] border border-[#f5eae3] text-center">
+                <h2 class="text-4xl fancy-font mb-2">Connect With Us</h2>
+                <p class="text-[10px] uppercase tracking-[3px] text-gray-400 mb-10">We'd love to hear from you</p>
+                
+                <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                    <a href="https://www.instagram.com/zmzm_glowsss" target="_blank" class="group bg-[#fffbfb] rounded-2xl p-6 transition-all duration-300 hover:bg-[#834d58]/5 hover:scale-[1.03] border border-[#fcf4f5]">
+                        <div class="text-4xl mb-3 transition-transform group-hover:scale-110">📷</div>
+                        <p class="font-bold text-sm tracking-wide text-[#834d58]">Instagram</p>
+                    </a>
+                    <a href="https://wa.me/201140492104" target="_blank" class="group bg-[#fffbfb] rounded-2xl p-6 transition-all duration-300 hover:bg-[#834d58]/5 hover:scale-[1.03] border border-[#fcf4f5]">
+                        <div class="text-4xl mb-3 transition-transform group-hover:scale-110">💬</div>
+                        <p class="font-bold text-sm tracking-wide text-[#834d58]">WhatsApp</p>
+                    </a>
+                    <a href="https://www.tiktok.com/@zmzmglowwss" target="_blank" class="group bg-[#fffbfb] rounded-2xl p-6 transition-all duration-300 hover:bg-[#834d58]/5 hover:scale-[1.03] border border-[#fcf4f5]">
+                        <div class="text-4xl mb-3 transition-transform group-hover:scale-110">🎵</div>
+                        <p class="font-bold text-sm tracking-wide text-[#834d58]">TikTok</p>
+                    </a>
+                </div>
             </div>
         </div>
-
         <footer class="py-10 text-center text-gray-400 text-[10px] tracking-widest uppercase">&copy; 2026 ZMZM GLOWS.</footer>
     </div>
 
@@ -360,7 +362,7 @@
                 if (activePId) openSubPage(activePId);
             } else {
                 alert("Wrong Admin Key!");
-            } verification
+            }
         }
 
         function openForm(type, id = null) {

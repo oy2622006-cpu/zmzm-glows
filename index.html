@@ -20,7 +20,7 @@
             overflow-x: hidden; 
         }
 
-        /* Banner متحرك بشكل ناعم */
+        /* Banner */
         .top-banner {
             background: #834d58;
             color: white;
@@ -29,14 +29,15 @@
         }
         .banner-text {
             display: inline-block;
-            padding-right: 120px;
-            animation: slideBanner 25s linear infinite;
+            padding-right: 100px;
+            animation: slideBanner 22s linear infinite;
         }
         @keyframes slideBanner {
             0% { transform: translateX(0); }
             100% { transform: translateX(-50%); }
         }
 
+        /* Logo Animation */
         .logo-container { 
             display: flex; 
             justify-content: center; 
@@ -46,7 +47,7 @@
         .logo-container span {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 2.55rem;
+            font-size: 2.6rem;
             color: var(--brand-primary);
             display: inline-block;
             animation: fancyBounce 2.8s infinite ease-in-out;
@@ -101,11 +102,11 @@
         </div>
     </nav>
 
-    <!-- البانر المتحرك (الكلام بيتحرك بشكل ناعم) -->
-    <div class="top-banner text-white text-[9px] tracking-[3px] py-3 text-center uppercase font-bold overflow-hidden">
+    <!-- Banner متحرك -->
+    <div class="top-banner text-white text-[9.5px] tracking-[2.5px] py-3.5 text-center uppercase font-bold overflow-hidden">
         <div class="banner-text">
-            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
     </div>
 
@@ -137,6 +138,7 @@
         <footer class="py-10 text-center text-gray-400 text-[10px] tracking-widest uppercase">&copy; 2026 ZMZM GLOWS.</footer>
     </div>
 
+    <!-- Items UI, Modals, and Script (same as before) -->
     <div id="items-ui" class="hidden container mx-auto px-4 py-10">
         <button onclick="goHome()" class="mb-8 text-[#834d58] font-bold text-xs uppercase tracking-widest flex items-center gap-1">
             ← Back to Collections
@@ -145,7 +147,6 @@
         <div id="items-grid" class="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-5 pb-20"></div>
     </div>
 
-    <!-- Modals -->
     <div id="admin-login-modal" class="fixed inset-0 bg-black/70 hidden flex items-center justify-center z-[99999]">
         <div class="bg-white rounded-3xl p-8 w-full max-w-sm mx-4 shadow-2xl">
             <h2 class="text-2xl font-bold text-center mb-6 text-[#834d58]">Admin Access</h2>

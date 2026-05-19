@@ -25,11 +25,14 @@
             color: white;
             overflow: hidden;
             white-space: nowrap;
+            padding: 18px 0;
         }
         .banner-text {
             display: inline-block;
-            padding-right: 260px;
-            animation: slideBanner 28s linear infinite;
+            padding-right: 420px;
+            animation: slideBanner 35s linear infinite;
+            font-size: 10.5px;
+            letter-spacing: 3px;
         }
         @keyframes slideBanner {
             0% { transform: translateX(0); }
@@ -99,10 +102,10 @@
         </div>
     </nav>
 
-    <div class="top-banner text-white text-[9.5px] tracking-[3px] py-3.5 text-center uppercase font-bold overflow-hidden">
+    <div class="top-banner text-white text-center uppercase font-bold overflow-hidden">
         <div class="banner-text">
-            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+            CRAFTED FOR YOUR GLOW • EXCLUSIVE HANDMADE PIECES &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
         </div>
     </div>
 
@@ -245,7 +248,7 @@
                     <div onclick="openSubPage(${x.id})">
                         <img src="${x.img || 'https://via.placeholder.com/600x700'}" class="w-full aspect-[4/4.5] object-cover">
                         <div class="p-6">
-                            <h2 class="text-2xl font-bold italic text-[#834d58] tracking-wide">${x.n || ''}</h2>
+                            <h2 class="text-2xl fancy-font text-[#834d58]">${x.n || ''}</h2>
                         </div>
                     </div>
                 </div>`;
@@ -253,6 +256,7 @@
             grid.innerHTML = html;
         }
 
+        // باقي الـ script بدون تغيير
         function saveData() {
             document.getElementById('save-loader').classList.remove('hidden');
             const name = document.getElementById('f_name').value.trim();
